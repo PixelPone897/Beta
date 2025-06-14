@@ -3,12 +3,13 @@ using static Scripts.Constants;
 
 namespace Scripts.Actors
 {
-    [CreateAssetMenu(fileName = "NewActorData", menuName = "Actors/ActorData", order = 1)]
-    public class ActorData : ScriptableObject
+    /// <summary>
+    /// Stores an Actor's general information and Base SPECIAL values.
+    /// </summary>
+    [CreateAssetMenu(fileName = "BaseActorStats", menuName = "Actors/BaseActorStats", order = 1)]
+    public class BaseActorStats : ScriptableObject
     {
-        [field: SerializeField, Header("General Info")] 
-        public string ActorName { get; private set; } = DUMMY_STRING;
-        [field: SerializeField, TextArea]
+        [field: SerializeField, TextArea, Header("General Info")] 
         public string ActorDescription { get; private set; } = DUMMY_STRING;
         [SerializeField]
         public ActorGender Gender { get; private set; } = ActorGender.MALE;
@@ -42,7 +43,7 @@ namespace Scripts.Actors
             Agility = 5;
             Luck = 5;
 
-            //Debug.Log("On BaseActorStat Reset!");
+            //Debug.Log("On BaseActorStats Reset!");
             PrintSpecialValues();
         }
 

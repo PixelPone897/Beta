@@ -17,6 +17,5 @@ namespace Scripts
             PEGASUS,
             UNICORN
         }
-
     }
 }
