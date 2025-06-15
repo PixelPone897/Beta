@@ -55,26 +55,30 @@ MonoBehaviour:
     <PlusModifiers>k__BackingField: []
     <MultiplyModifiers>k__BackingField: []
   <Perception>k__BackingField:
-    <BaseValue>k__BackingField: 0
+    <BaseValue>k__BackingField: 5
     <PlusModifiers>k__BackingField: []
     <MultiplyModifiers>k__BackingField: []
   <Endurance>k__BackingField:
-    <BaseValue>k__BackingField: 0
+    <BaseValue>k__BackingField: 5
     <PlusModifiers>k__BackingField: []
     <MultiplyModifiers>k__BackingField: []
   <Charisma>k__BackingField:
-    <BaseValue>k__BackingField: 0
+    <BaseValue>k__BackingField: 5
     <PlusModifiers>k__BackingField: []
     <MultiplyModifiers>k__BackingField: []
   <Intelligence>k__BackingField:
-    <BaseValue>k__BackingField: 0
+    <BaseValue>k__BackingField: 5
     <PlusModifiers>k__BackingField: []
     <MultiplyModifiers>k__BackingField: []
   <Agility>k__BackingField:
-    <BaseValue>k__BackingField: 0
+    <BaseValue>k__BackingField: 5
     <PlusModifiers>k__BackingField: []
     <MultiplyModifiers>k__BackingField: []
   <Luck>k__BackingField:
+    <BaseValue>k__BackingField: 5
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Unarmed>k__BackingField:
     <BaseValue>k__BackingField: 0
     <PlusModifiers>k__BackingField: []
     <MultiplyModifiers>k__BackingField: []
