@@ -16,6 +16,15 @@ namespace Scripts.Actors
         [field: SerializeField]
         public int Level { get; private set; }
         [field: SerializeField]
+        public int Experience { get; private set; }
+
+        public int ExpToNext { get; private set; }
+        [field: SerializeField]
+        public ActorRace Race { get; private set; }
+        [field: SerializeField]
+        public int Age { get; private set; }
+
+        [field: SerializeField]
         public ActorGender Gender { get; private set; }
 
         [field: SerializeField, Header("SPECIAL Stats")]
@@ -33,35 +42,15 @@ namespace Scripts.Actors
         [field: SerializeField]
         public Stat Luck { get; private set; }
 
-        [field: SerializeField]
-        public BaseActorStats BaseActorStats { get; private set; }
-
         public void Awake()
         {
-            if(BaseActorStats == null)
-            {
-                Debug.LogError("BaseActorStats is not assigned in ActorVitalStats. Please assign it in the inspector.");
-                return;
-            }
-
-            ActorName = DUMMY_STRING; // Default name, must be set later
-            Gender = BaseActorStats.Gender;
-            Level = 1; // Default level, can be modified later
-
-            // Initialize stats with default values from BaseActorStats
-            Strength = new Stat(BaseActorStats.Strength);
-            Perception = new Stat(BaseActorStats.Perception);
-            Endurance = new Stat(BaseActorStats.Endurance);
-            Charisma = new Stat(BaseActorStats.Charisma);
-            Intelligence = new Stat(BaseActorStats.Intelligence);
-            Agility = new Stat(BaseActorStats.Agility);
-            Luck = new Stat(BaseActorStats.Luck);
+            ExpToNext = Level * (Level + 1) / 2 * 1000;
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-
+            Debug.Log("Strength" + Strength.GetPermanentValue());
         }
 
         // Update is called once per frame
