@@ -66,6 +66,13 @@ namespace Scripts
             PlusModifiers.RemoveAll(modifier => !modifier.IsPermanent);
             MultiplyModifiers.RemoveAll(modifier => !modifier.IsPermanent);
         }
+
+        public override string ToString()
+        {
+            string representation =
+                $"Base Value: {BaseValue}, Permenant Value: {GetPermanentValue()} Value: {GetValue()}";
+            return representation;
+        }
     }
 
     [System.Serializable]
