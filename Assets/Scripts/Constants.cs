@@ -20,5 +20,15 @@ namespace Scripts
             PEGASUS,
             UNICORN
         }
+
+        public enum RadiationStatus
+        {
+            NONE,
+            MINOR,
+            ADVANCED,
+            CRITICAL,
+            DEADLY,
+            DEAD
+        }
     }
 }
