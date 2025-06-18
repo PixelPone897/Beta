@@ -5,10 +5,7 @@ using static Scripts.Constants;
 // Values will also be moved to the BaseActorStats ScriptableObject in the future
 namespace Scripts.Actors
 {
-    /// <summary>
-    /// Stores an Actor's vital statistics such as name, health, and other attributes.
-    /// </summary>
-    public class ActorVitalStats : MonoBehaviour
+    public class ActorSpecialStats : MonoBehaviour
     {
 
         [field: SerializeField, Header("General Info")]

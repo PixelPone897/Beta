@@ -44,6 +44,19 @@ namespace Scripts
             return value;
         }
 
+        public float ApplyModifiers(float value)
+        {
+            foreach (StatModifier modifier in PlusModifiers)
+            {
+                value += modifier.Value;
+            }
+            foreach (StatModifier modifier in MultiplyModifiers)
+            {
+                value *= modifier.Value;
+            }
+            return value;
+        }
+
         public float GetPermanentValue()
         {
             // Use LINQ method for practice
@@ -94,24 +107,52 @@ namespace Scripts
     public class Resource
     {
         [field: SerializeField]
-        public Stat CurrentValue { get; set; }
-        [field: SerializeField]
-        public Stat MaxValue { get; set; }
+        public float CurrentValue { get; private set; }
         [field: SerializeField]
         public Stat MinValue { get; set; }
+        [field: SerializeField]
+        public Stat MaxValue { get; set; }
 
         public Resource()
         {
             MinValue = new Stat(RESOURCE_MIN_VALUE);
             MaxValue = new Stat(RESOURCE_MAX_VALUE);
-            CurrentValue = new Stat(0);
+            CurrentValue = 0;
         }
 
         public Resource(float currentValue)
         {
             MinValue = new Stat(RESOURCE_MIN_VALUE);
             MaxValue = new Stat(RESOURCE_MAX_VALUE);
-            CurrentValue = new Stat(currentValue);
+            CurrentValue = currentValue;
+        }
+
+        public Resource(float currentValue, float minValue, float maxValue)
+        {
+            MinValue = new Stat(minValue);
+            MaxValue = new Stat(maxValue);
+            CurrentValue = Mathf.Clamp(currentValue, MinValue.GetValue(), MaxValue.GetValue());
+        }
+
+        public void Add(float value)
+        {
+            float possibleNewValue = CurrentValue + value;
+            CurrentValue = Mathf.Clamp(possibleNewValue, MinValue.GetValue(), MaxValue.GetValue());
+        }
+
+        public void Multiply(float value)
+        {
+            float possibleNewValue = CurrentValue * value;
+            CurrentValue = Mathf.Clamp(possibleNewValue, MinValue.GetValue(), MaxValue.GetValue());
+        } 
+
+        public override string ToString()
+        {
+            string minValue = MinValue.ToString();
+            string maxValue = MaxValue.ToString();
+            string currentValue = CurrentValue.ToString();
+
+            return $"Resource:\nMin Value:{minValue}\nCurrent Value: {currentValue}\nMax Value: {maxValue}";
         }
     }
 }

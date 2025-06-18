@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5774541920686595289}
   - component: {fileID: 167044904216993763}
+  - component: {fileID: 3022723876085199767}
   m_Layer: 0
   m_Name: Dummy
   m_TagString: Untagged
@@ -82,3 +83,115 @@ MonoBehaviour:
     <BaseValue>k__BackingField: 0
     <PlusModifiers>k__BackingField: []
     <MultiplyModifiers>k__BackingField: []
+  <Thrown>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <MagicialEnergyWeapons>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Melee>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Firearms>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Explosives>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <BattleSaddles>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Alchemy>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Survivalism>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Traps>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Bluff>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Intimidation>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Negotiation>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Seduction>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Barter>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Sneak>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Lockpick>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <SlightOfHoof>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <HackingMatrixTech>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Chemistry>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Medicine>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <AcademicsLore>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <RepairMechanics>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Gambling>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Athletics>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Profession>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+--- !u!114 &3022723876085199767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974059488295706514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90bd4b45cb6c3c4fa597dedce0ba4d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
