@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using static Scripts.Constants;
 
@@ -38,63 +39,9 @@ namespace Scripts.Actors
         public Stat Agility { get; private set; }
         [field: SerializeField]
         public Stat Luck { get; private set; }
- 
-        [field: SerializeField, Header("Skills")]
-        // Should I create another class specifically for Skills
-        // that holds row information for each Skill as it appears in the
-        // Google Sheet?
-        public Stat Unarmed { get; private set; }
-        [field: SerializeField]
-        public Stat Thrown { get; private set; }
-        [field: SerializeField]
-        public Stat MagicialEnergyWeapons { get; private set; }
-        [field: SerializeField]
-        public Stat Melee { get; private set; }
-        [field: SerializeField]
-        public Stat Firearms { get; private set; }
-        [field: SerializeField]
-        public Stat Explosives { get; private set; }
-        [field: SerializeField]
-        public Stat BattleSaddles { get; private set; }
-        [field: SerializeField]
-        public Stat Alchemy { get; private set; }
-        [field: SerializeField]
-        public Stat Survivalism { get; private set; }
 
-        [field: SerializeField]
-        public Stat Traps { get; private set; }
-        [field: SerializeField]
-        public Stat Bluff { get; private set; }
-        [field: SerializeField]
-        public Stat Intimidation { get; private set; }
-        [field: SerializeField]
-        public Stat Negotiation { get; private set; }
-        [field: SerializeField]
-        public Stat Seduction { get; private set; }
-        [field: SerializeField]
-        public Stat Barter { get; private set; }
-        [field: SerializeField]
-        public Stat Sneak { get; private set; }
-        [field: SerializeField]
-        public Stat Lockpick { get; private set; }
-        [field: SerializeField]
-        public Stat SlightOfHoof { get; private set; }
-        [field: SerializeField]
-        public Stat HackingMatrixTech { get; private set; }
-        [field: SerializeField]
-        public Stat Chemistry { get; private set; }
-        [field: SerializeField]
-        public Stat Medicine { get; private set; }
-        [field: SerializeField]
-        public Stat AcademicsLore { get; private set; }
-        [field: SerializeField]
-        public Stat RepairMechanics { get; private set; }
-        [field: SerializeField]
-        public Stat Gambling { get; private set; }
-        [field: SerializeField]
-        public Stat Athletics { get; private set; }
-        [field: SerializeField]
-        public Stat Profession { get; private set; }
+        [field: Header("Skills")]
+        public Dictionary<SkillName, Stat> Skills;
 
         public void Awake()
         {
@@ -102,35 +49,51 @@ namespace Scripts.Actors
 
             // Set default Skill Values based on formulas
             // Need to explicitly set each one to separate new objects as we don't want skills to share Stat objects
-            Unarmed = new Stat(Mathf.CeilToInt(Endurance.BaseValue + Agility.BaseValue + (Luck.BaseValue / 2)));
-            Thrown = new Stat(Mathf.CeilToInt(Strength.BaseValue + Agility.BaseValue + (Luck.BaseValue / 2)));
-            MagicialEnergyWeapons = new Stat(Mathf.CeilToInt((Perception.BaseValue * 2) + (Luck.BaseValue / 2)));
-            Melee = new Stat(Mathf.CeilToInt(Strength.BaseValue + Agility.BaseValue + (Luck.BaseValue / 2)));
-            Firearms = new Stat(Mathf.CeilToInt(Perception.BaseValue + Agility.BaseValue + (Luck.BaseValue / 2)));
-            Explosives = new Stat(Mathf.CeilToInt((Perception.BaseValue * 2) + (Luck.BaseValue / 2)));
-            BattleSaddles = new Stat(Mathf.CeilToInt(Endurance.BaseValue + Perception.BaseValue + (Luck.BaseValue / 2)));
-            Alchemy = new Stat(Mathf.CeilToInt(Intelligence.BaseValue + Endurance.BaseValue + Perception.BaseValue
+            Skills[SkillName.UNARMED] = 
+                new Stat(Mathf.CeilToInt(Endurance.BaseValue + Agility.BaseValue + (Luck.BaseValue / 2)));
+            Skills[SkillName.THROWN] =
+                new Stat(Mathf.CeilToInt(Strength.BaseValue + Agility.BaseValue + (Luck.BaseValue / 2)));
+            Skills[SkillName.MEW] =
+                new Stat(Mathf.CeilToInt((Perception.BaseValue * 2) + (Luck.BaseValue / 2)));
+            Skills[SkillName.MELEE] =
+                new Stat(Mathf.CeilToInt(Strength.BaseValue + Agility.BaseValue + (Luck.BaseValue / 2)));
+            Skills[SkillName.FIREARMS] =
+                new Stat(Mathf.CeilToInt(Perception.BaseValue + Agility.BaseValue + (Luck.BaseValue / 2)));
+            Skills[SkillName.EXPLOSIVES] =
+                new Stat(Mathf.CeilToInt((Perception.BaseValue * 2) + (Luck.BaseValue / 2)));
+            Skills[SkillName.BATTLE_SADDLES] =
+                new Stat(Mathf.CeilToInt(Endurance.BaseValue + Perception.BaseValue + (Luck.BaseValue / 2)));
+            Skills[SkillName.ALCH_SUR_TRAPS] =
+                new Stat(Mathf.CeilToInt(Intelligence.BaseValue + Endurance.BaseValue + Perception.BaseValue
                 + (Luck.BaseValue / 2)) - 5);
-            Survivalism = new Stat(Mathf.CeilToInt(Intelligence.BaseValue + Endurance.BaseValue + Perception.BaseValue
-                + (Luck.BaseValue / 2)) - 5);
-            Traps = new Stat(Mathf.CeilToInt(Intelligence.BaseValue + Endurance.BaseValue + Perception.BaseValue
-                + (Luck.BaseValue / 2)) - 5);
-            Bluff = new Stat(Mathf.CeilToInt((Charisma.BaseValue * 2) + (Luck.BaseValue / 2)));
-            Intimidation = new Stat(Mathf.CeilToInt((Charisma.BaseValue * 2) + (Luck.BaseValue / 2)));
-            Negotiation = new Stat(Mathf.CeilToInt((Charisma.BaseValue * 2) + (Luck.BaseValue / 2)));
-            Seduction = new Stat(Mathf.CeilToInt((Charisma.BaseValue * 2) + (Luck.BaseValue / 2)));
-            Barter = new Stat(Mathf.CeilToInt((Charisma.BaseValue * 2) + (Luck.BaseValue / 2)));
-            Sneak = new Stat(Mathf.CeilToInt((Agility.BaseValue * 2) + (Luck.BaseValue / 2)));
-            Lockpick = new Stat(Mathf.CeilToInt(Charisma.BaseValue + Agility.BaseValue + (Luck.BaseValue / 2)));
-            SlightOfHoof = new Stat(Mathf.CeilToInt(Charisma.BaseValue + Agility.BaseValue + (Luck.BaseValue / 2)));
-            HackingMatrixTech = new Stat(Mathf.CeilToInt((Intelligence.BaseValue * 2) + (Luck.BaseValue / 2)));
-            Chemistry = new Stat(Mathf.CeilToInt((Intelligence.BaseValue * 2) + (Luck.BaseValue / 2)));
-            Medicine = new Stat(Mathf.CeilToInt((Intelligence.BaseValue * 2) + (Luck.BaseValue / 2)));
-            AcademicsLore = new Stat(Mathf.CeilToInt((Intelligence.BaseValue * 2) + (Luck.BaseValue / 2)));
-            RepairMechanics = new Stat(Mathf.CeilToInt((Intelligence.BaseValue * 2) + (Luck.BaseValue / 2)));
-            Gambling = new Stat(Mathf.CeilToInt(Luck.BaseValue * 2 + 3));
-            Athletics = new Stat(Mathf.CeilToInt(Strength.BaseValue + Endurance.BaseValue + Agility.BaseValue));
-            Profession = new Stat(Mathf.CeilToInt((Charisma.BaseValue * 2) + (Luck.BaseValue / 2)));
+            Skills[SkillName.BLUFF_INTIMID] =
+                new Stat(Mathf.CeilToInt((Charisma.BaseValue * 2) + (Luck.BaseValue / 2)));
+            Skills[SkillName.NEGOT_SEDUCT] =
+                new Stat(Mathf.CeilToInt((Charisma.BaseValue * 2) + (Luck.BaseValue / 2)));
+            Skills[SkillName.BARTER] =
+                new Stat(Mathf.CeilToInt((Charisma.BaseValue * 2) + (Luck.BaseValue / 2)));
+            Skills[SkillName.SNEAK] =
+                new Stat(Mathf.CeilToInt((Agility.BaseValue * 2) + (Luck.BaseValue / 2)));
+            Skills[SkillName.LOCKPICK] =
+                new Stat(Mathf.CeilToInt(Charisma.BaseValue + Agility.BaseValue + (Luck.BaseValue / 2)));
+            Skills[SkillName.SLIGHT_OF_HOOF] =
+                new Stat(Mathf.CeilToInt(Charisma.BaseValue + Agility.BaseValue + (Luck.BaseValue / 2)));
+            Skills[SkillName.HACKING_TECH] =
+                new Stat(Mathf.CeilToInt((Intelligence.BaseValue * 2) + (Luck.BaseValue / 2)));
+            Skills[SkillName.CHEMISTRY] =
+                new Stat(Mathf.CeilToInt((Intelligence.BaseValue * 2) + (Luck.BaseValue / 2)));
+            Skills[SkillName.MEDICINE] =
+                new Stat(Mathf.CeilToInt((Intelligence.BaseValue * 2) + (Luck.BaseValue / 2)));
+            Skills[SkillName.ACADEMICS_LORE] =
+                new Stat(Mathf.CeilToInt((Intelligence.BaseValue * 2) + (Luck.BaseValue / 2)));
+            Skills[SkillName.REPAIR_MECH] =
+                new Stat(Mathf.CeilToInt((Intelligence.BaseValue * 2) + (Luck.BaseValue / 2)));
+            Skills[SkillName.GAMBLING] =
+                new Stat(Mathf.CeilToInt(Luck.BaseValue * 2 + 3));
+            Skills[SkillName.ATHLETICS] =
+                new Stat(Mathf.CeilToInt(Strength.BaseValue + Endurance.BaseValue + Agility.BaseValue));
+            Skills[SkillName.PROFESSION] =
+                new Stat(Mathf.CeilToInt((Charisma.BaseValue * 2) + (Luck.BaseValue / 2)));
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
