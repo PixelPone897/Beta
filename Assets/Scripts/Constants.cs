@@ -30,5 +30,31 @@ namespace Scripts
             DEADLY,
             DEAD
         }
+
+        public enum SkillName
+        {
+            UNARMED,
+            THROWN,
+            MEW,
+            MELEE,
+            FIREARMS,
+            EXPLOSIVES,
+            BATTLE_SADDLES,
+            ALCH_SUR_TRAPS,
+            BLUFF_INTIMID,
+            NEGOT_SEDUCT,
+            BARTER,
+            SNEAK,
+            LOCKPICK,
+            SLIGHT_OF_HOOF,
+            HACKING_TECH,
+            CHEMISTRY,
+            MEDICINE,
+            ACADEMICS_LORE,
+            REPAIR_MECH,
+            GAMBLING,
+            ATHLETICS,
+            PROFESSION
+        }
     }
 }
