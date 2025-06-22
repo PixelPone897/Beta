@@ -31,6 +31,17 @@ namespace Scripts
             DEAD
         }
 
+        public enum SpecialName
+        {
+            STRENGTH,
+            PERCEPTION,
+            ENDURANCE,
+            CHARISMA,
+            INTELLIGENCE,
+            AGILITY,
+            LUCK
+        }
+
         public enum SkillName
         {
             UNARMED,
