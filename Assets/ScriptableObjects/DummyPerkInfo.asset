@@ -26,7 +26,7 @@ MonoBehaviour:
     - rid: 8464894246908592193
       type: {class: LevelRequirement, ns: Scripts.Perks, asm: Assembly-CSharp}
       data:
-        requiredLevel: 2
+        requiredLevel: 1
     - rid: 8464894250958979138
       type: {class: PlusFivePerkEffect, ns: Scripts.Perks, asm: Assembly-CSharp}
       data:

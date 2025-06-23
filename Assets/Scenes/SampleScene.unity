@@ -404,6 +404,10 @@ MonoBehaviour:
     <BaseValue>k__BackingField: 5
     <PlusModifiers>k__BackingField: []
     <MultiplyModifiers>k__BackingField: []
+  testing:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
 --- !u!4 &801507302
 Transform:
   m_ObjectHideFlags: 0
@@ -431,11 +435,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 132d2d9e3ec8c6544af59f9eaedc70c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equippedPerks:
-  - defaultInfo: {fileID: 11400000, guid: 7ba7e5f765cceab49b28dd46149255d5, type: 2}
+  equippedPerks: []
+  testAdd:
+    defaultInfo: {fileID: 11400000, guid: 7ba7e5f765cceab49b28dd46149255d5, type: 2}
     <Name>k__BackingField: 
     <Description>k__BackingField: 
-    <CurrentRank>k__BackingField: 1
+    <CurrentRank>k__BackingField: 0
     <MaxRank>k__BackingField: 0
     <Image>k__BackingField: {fileID: 0}
     <Requirements>k__BackingField: []
