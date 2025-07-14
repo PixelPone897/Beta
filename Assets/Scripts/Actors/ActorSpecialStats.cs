@@ -44,9 +44,6 @@ namespace Scripts.Actors
         [field: Header("Skills")]
         public Dictionary<SkillName, Stat> Skills;
 
-        [SerializeField]
-        private Stat testing;
-
         public void Awake()
         {
             ExpToNext = Level * (Level + 1) / 2 * 1000;
@@ -99,8 +96,6 @@ namespace Scripts.Actors
                 new Stat(Mathf.CeilToInt(Strength.BaseValue + Endurance.BaseValue + Agility.BaseValue));
             Skills[SkillName.PROFESSION] =
                 new Stat(Mathf.CeilToInt((Charisma.BaseValue * 2) + (Luck.BaseValue / 2)));
-
-            testing = Skills[SkillName.UNARMED];
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created

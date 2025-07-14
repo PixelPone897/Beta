@@ -30,6 +30,17 @@ namespace Scripts
 
         public void RemoveMultiplyModifier(StatModifier modifier) => MultiplyModifiers.Remove(modifier);
 
+        public void RemovePlusModifier(float value, bool isPermanentValue)
+        {
+            StatModifier found =
+                PlusModifiers.FirstOrDefault(modifier => modifier.Value == value && modifier.IsPermanent == isPermanentValue);
+
+            if (found != null)
+            {
+                PlusModifiers.Remove(found);
+            }
+        }
+
         public float GetValue()
         {
             float value = BaseValue;
