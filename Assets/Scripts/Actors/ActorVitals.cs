@@ -10,19 +10,22 @@ namespace Scripts.Actors
     {
         private ActorSpecialStats specialStats;
         public Resource Health { get; private set; }
+        public Stat HealingRate { get; private set; }
         public Resource ActionPoints { get; private set; }
+
         public Resource Rads { get; private set; }
         public RadiationStatus RadsStatus { get; private set; }
         private List<IPerkEffect> radiationEffects;
+        private List<IPerkEffect> poisonEffects;
 
-        public Stat HealingRate { get; private set; }
-        
+        public Stat PoisionResistance { get; private set; }
+
         public Stat RadiationResistance { get; private set; }
 
         public void Awake()
         {
             radiationEffects = new List<IPerkEffect>();
-            Rads = new Resource(400);
+            Rads = new Resource(0, 0, 1000);
             RadsStatus = GetRadiationStatus();
         }
 
@@ -39,6 +42,8 @@ namespace Scripts.Actors
             value = 45 + 5 * (int)specialStats.Endurance.BaseValue;
             ActionPoints = new Resource(value, 0, value);
             RadiationResistance = new Stat(specialStats.Endurance.BaseValue * 2);
+            PoisionResistance = new Stat(specialStats.Endurance.BaseValue * 2);
+
             RadsStatus = GetRadiationStatus();
             SetRadiationDebuffs();
         }
