@@ -19,6 +19,19 @@ namespace Scripts
             UNICORN
         }
 
+        public enum LimbName
+        {
+            HEAD,
+            TORSO,
+            LEFT_FORELEG,
+            RIGHT_FORELEG,
+            LEFT_HINDLEG,
+            RIGHT_HINDLEG,
+            HORN, // Should be included in separate ActorMagic Component
+            LEFT_WING, // Should be included in separate ActorFlight Component
+            RIGHT_WING,
+        }
+
         public enum RadiationStatus
         {
             NONE,

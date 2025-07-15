@@ -16,17 +16,22 @@ namespace Scripts.Actors
         public Resource Rads { get; private set; }
         public RadiationStatus RadsStatus { get; private set; }
         private List<IPerkEffect> radiationEffects;
+        public Stat RadiationResistance { get; private set; }
         private List<IPerkEffect> poisonEffects;
-
         public Stat PoisionResistance { get; private set; }
 
-        public Stat RadiationResistance { get; private set; }
+        [field: SerializeField]
+        public List<ActorLimb> Limbs { get; private set; }
 
         public void Awake()
         {
             radiationEffects = new List<IPerkEffect>();
             Rads = new Resource(0, 0, 1000);
             RadsStatus = GetRadiationStatus();
+            if(Limbs.Count == 0)
+            {
+                Debug.LogWarning("An Actor is required to have at least one limb!");
+            }
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -135,5 +140,16 @@ namespace Scripts.Actors
                 radiationEffect.ApplyEffect(gameObject);
             }
         }
+    }
+
+    [System.Serializable]
+    public class ActorLimb
+    {
+        [SerializeField]
+        private LimbName limbName;
+        [SerializeField]
+        private Resource limbHealth;
+        [SerializeField]
+        private bool canCripple;
     }
 }
