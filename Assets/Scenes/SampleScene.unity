@@ -352,7 +352,6 @@ GameObject:
   - component: {fileID: 801507301}
   - component: {fileID: 801507303}
   - component: {fileID: 801507304}
-  - component: {fileID: 801507305}
   m_Layer: 0
   m_Name: Dummy
   m_TagString: Untagged
@@ -434,6 +433,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equippedPerks: []
+  testing:
+    itemData: {fileID: 0}
+    quantity: 0
+    <Components>k__BackingField: []
   references:
     version: 2
     RefIds: []
@@ -450,19 +453,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Limbs>k__BackingField: []
---- !u!114 &801507305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 801507299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36db0fe093a3ea148a105a92dfedad8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <InventorySlots>k__BackingField: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
