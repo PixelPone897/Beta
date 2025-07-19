@@ -2,7 +2,8 @@
 
 namespace Assets.Scripts.Items
 {
-    public abstract class ItemData: ScriptableObject
+    [CreateAssetMenu(fileName = "DummyItemData", menuName = "Items/ItemData")]
+    public class ItemData: ScriptableObject
     {
         [field: SerializeField]
         public string Name { get; private set; }
@@ -12,5 +13,8 @@ namespace Assets.Scripts.Items
         public Sprite Icon { get; private set; }
         [field: SerializeField]
         public bool CanStack { get; private set; }
+
+        [field: SerializeField]
+        public float Weight { get; private set; }
     }
 }

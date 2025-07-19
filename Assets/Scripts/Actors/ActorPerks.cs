@@ -13,14 +13,6 @@ namespace Scripts.Actors
 
         public IReadOnlyList<Perk> EquippedPerks => equippedPerks;
 
-        public ItemInstance testing;
-
-        public void Awake()
-        {
-            testing = new ItemInstance();
-            testing.AddStateComponent(new AmmoState());
-        }
-
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
