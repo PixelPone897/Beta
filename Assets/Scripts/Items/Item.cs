@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace Assets.Scripts.Items
 {
+    //TODO: Add Condition Instance Component
+
     [Serializable]
     public abstract class ItemInstanceComponent
     {

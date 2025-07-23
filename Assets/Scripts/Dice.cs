@@ -86,7 +86,8 @@ namespace Scripts
             }
         }
 
-        public static bool ContestOpposingRolls(int degreeOne, int degreeTwo, bool isOneSpecial = true, bool isTwoSpecial = true)
+        public static bool ContestOpposingRolls(int degreeOne, int degreeTwo,
+            bool isOneSpecial = true, bool isTwoSpecial = true)
         {
             if(isOneSpecial == isTwoSpecial)
             {
