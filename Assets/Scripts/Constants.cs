@@ -53,6 +53,16 @@ namespace Scripts
             LUCK
         }
 
+        public enum RollModifier
+        {
+            VERY_EASY = 3,
+            EASY = 2,
+            ORDINARY = 1,
+            DIFFICULT = -1,
+            HARD = -2,
+            VERY_HARD = -3
+        }
+
         public enum SkillName
         {
             UNARMED,
@@ -77,6 +87,16 @@ namespace Scripts
             GAMBLING,
             ATHLETICS,
             PROFESSION
+        }
+
+        public static int GetSpecialRollModifier(RollModifier modifier)
+        {
+            return (int)modifier;
+        }
+
+        public static float GetSkillRollModifier(RollModifier modifier)
+        {
+            return (float)((int)modifier * 0.1f);
         }
     }
 }

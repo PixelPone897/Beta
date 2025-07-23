@@ -73,6 +73,39 @@ namespace Scripts
 
             return total + modifier;
         }
+
+        public static int GetDegreeOfRoll(int rollAmount, int statAmount, bool forSuccess = true)
+        {
+            if (forSuccess)
+            {
+                return statAmount - rollAmount;
+            }
+            else
+            {
+                return rollAmount - statAmount;
+            }
+        }
+
+        public static bool ContestOpposingRolls(int degreeOne, int degreeTwo, bool isOneSpecial = true, bool isTwoSpecial = true)
+        {
+            if(isOneSpecial == isTwoSpecial)
+            {
+                return degreeOne >= degreeTwo;
+            }
+            else
+            {
+                if(!isOneSpecial)
+                {
+                    int valueToCompare = Mathf.FloorToInt(degreeOne / 10);
+                    return valueToCompare >= degreeTwo;
+                }
+                else
+                {
+                    int valueToCompare = Mathf.FloorToInt(degreeTwo / 10);
+                    return degreeOne >= degreeTwo;
+                }
+            }
+        }
     }
 
 }
