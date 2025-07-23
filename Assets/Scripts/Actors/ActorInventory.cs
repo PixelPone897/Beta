@@ -17,9 +17,6 @@ namespace Assets.Scripts.Actors
         [field: SerializeField]
         private List<InventorySlot> inventorySlots;
 
-        public ItemData testData;
-        public ItemData uniqueData;
-
 
         private void Awake()
         {
@@ -36,17 +33,6 @@ namespace Assets.Scripts.Actors
             numberOfBottleCaps = 0;
             int carryCalcuation = Mathf.FloorToInt(25 + 25 * specialStats.Strength.GetValue());
             carryWeight = new Stat(carryCalcuation);
-
-            ItemInstance testing = new ItemInstance(testData);
-            AddItem(testing);
-            AddItem(testing);
-            RemoveItem(testing, 1);
-
-            testing = new ItemInstance(uniqueData);
-            testing.AddStateComponent(new AmmoState());
-            AddItem(testing);
-
-            testing.RemoveStateComponent<AmmoState>();
         }
 
         // Update is called once per frame
@@ -96,6 +82,11 @@ namespace Assets.Scripts.Actors
             InventorySlot slot = inventorySlots.Find(slot => 
             slot.Item.itemData.Name == itemToRemove.itemData.Name);
             if (slot == null) return;
+
+            if(slot.Item.GetInstanceComponent<KeyItem>() != null)
+            {
+                return;
+            }
 
             slot.Amount -= quantity;
             if (slot.Amount <= 0)

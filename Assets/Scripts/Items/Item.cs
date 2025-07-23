@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.Items
@@ -11,15 +12,9 @@ namespace Assets.Scripts.Items
     }
 
     [Serializable]
-    public class AmmoState : ItemInstanceComponent
+    public class KeyItem : ItemInstanceComponent
     {
-        [SerializeField]
-        private int amountOfAmmo;
-
-        public override void Initialize(ItemInstance owner)
-        {
-
-        }
+        public override void Initialize(ItemInstance owner) { }
     }
 
     [Serializable]
@@ -51,24 +46,20 @@ namespace Assets.Scripts.Items
             }
         }
 
-        public void AddStateComponent<T>(T componentToAdd) where T : ItemInstanceComponent
+        public void AddInstanceComponent(ItemInstanceComponent componentToAdd)
         {
             componentToAdd.Initialize(this);
             Components.Add(componentToAdd);
-            //components[typeof(T)] = componentToAdd;
         }
 
-        public T GetStateComponent<T>() where T : ItemInstanceComponent
+        public T GetInstanceComponent<T>() where T : ItemInstanceComponent
         {
-            //components.TryGetValue(typeof(T), out var component);
-            return Components.Find(state => state.GetType() == typeof(T)) as T;
-            //return component as T;
+            return Components.FirstOrDefault(state => state.GetType() == typeof(T)) as T;
         }
 
-        public void RemoveStateComponent<T>() where T : ItemInstanceComponent
+        public void RemoveInstanceComponent<T>() where T : ItemInstanceComponent
         {
-            Components.Remove(GetStateComponent<T>());
-            //components.Remove(typeof(T));
+            Components.Remove(GetInstanceComponent<T>());
         }
     }
 }
