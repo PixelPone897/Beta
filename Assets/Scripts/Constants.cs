@@ -98,5 +98,15 @@ namespace Scripts
         {
             return (float)((int)modifier * 0.1f);
         }
+
+        public enum ItemConditionTier
+        {
+            PERFECT,
+            GOOD,
+            USED,
+            HEAVILY_USED,
+            POOR,
+            BROKEN
+        }
     }
 }
