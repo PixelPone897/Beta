@@ -17,7 +17,7 @@ namespace Assets.Scripts.Actors
         [field: SerializeField]
         private List<InventorySlot> inventorySlots;
 
-
+        public RangeWeaponData weaponData;
         private void Awake()
         {
             if(inventorySlots == null)
@@ -33,6 +33,11 @@ namespace Assets.Scripts.Actors
             numberOfBottleCaps = 0;
             int carryCalcuation = Mathf.FloorToInt(25 + 25 * specialStats.Strength.GetValue());
             carryWeight = new Stat(carryCalcuation);
+
+            ItemInstance testing = new ItemInstance(weaponData);
+            testing.AddInstanceComponent(new Ammo(testing));
+            AddItem(testing);
+
         }
 
         // Update is called once per frame

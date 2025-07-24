@@ -33,10 +33,7 @@ namespace Assets.Scripts.Items
 
         public Condition(ItemInstance owner) : base(owner)
         {
-            if(CurrentCondition == null)
-            {
-                CurrentCondition = new Resource(75, 0, 120);
-            }
+            CurrentCondition ??= new Resource(75, 0, 120);
         }
 
         public bool IsBroken => CurrentCondition.CurrentValue <= 0;
@@ -78,6 +75,19 @@ namespace Assets.Scripts.Items
     }
 
     [Serializable]
+    public class Ammo : ItemInstanceComponent
+    {
+        [field: SerializeField]
+        public Resource CurrentAmmo { get; set; }
+
+        public Ammo(ItemInstance owner) : base(owner)
+        {
+            RangeWeaponData rangeWeapon = owner.itemData as RangeWeaponData;
+            CurrentAmmo = new Resource(rangeWeapon.MagSize, 0, rangeWeapon.MagSize);
+        }
+    }
+
+    [Serializable]
     public class ItemInstance
     {
         [field: SerializeField]
@@ -90,8 +100,7 @@ namespace Assets.Scripts.Items
 
         public ItemInstance()
         {
-            if (Components == null)
-                Components = new List<ItemInstanceComponent>();
+            Components ??= new List<ItemInstanceComponent>();
             UniqueId = string.Empty;
         }
 

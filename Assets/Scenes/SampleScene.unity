@@ -449,6 +449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventorySlots: []
+  weaponData: {fileID: 11400000, guid: 01b72c91d021f5a47be28977cacda08f, type: 2}
   references:
     version: 2
     RefIds: []
