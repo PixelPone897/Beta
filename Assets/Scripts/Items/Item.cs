@@ -11,13 +11,18 @@ namespace Assets.Scripts.Items
     [Serializable]
     public abstract class ItemInstanceComponent
     {
-        public abstract void Initialize(ItemInstance owner);
+        public ItemInstance Owner { get; private set; }
+
+        public ItemInstanceComponent(ItemInstance owner)
+        {
+            Owner = owner;
+        }
     }
 
     [Serializable]
     public class KeyItem : ItemInstanceComponent
     {
-        public override void Initialize(ItemInstance owner) { }
+        public KeyItem(ItemInstance owner) : base(owner) { }
     }
 
     [Serializable]
@@ -26,17 +31,12 @@ namespace Assets.Scripts.Items
         [field: SerializeField]
         public Resource CurrentCondition { get; private set; }
 
-        public Condition()
+        public Condition(ItemInstance owner) : base(owner)
         {
             if(CurrentCondition == null)
             {
                 CurrentCondition = new Resource(75, 0, 120);
             }
-        }
-
-        public override void Initialize(ItemInstance owner)
-        {
-
         }
 
         public bool IsBroken => CurrentCondition.CurrentValue <= 0;
@@ -106,15 +106,14 @@ namespace Assets.Scripts.Items
             }
         }
 
-        public void AddInstanceComponent(ItemInstanceComponent componentToAdd)
+        public void AddInstanceComponent(ItemInstanceComponent component)
         {
-            componentToAdd.Initialize(this);
-            Components.Add(componentToAdd);
+            Components.Add(component);
         }
 
         public T GetInstanceComponent<T>() where T : ItemInstanceComponent
         {
-            return Components.FirstOrDefault(state => state.GetType() == typeof(T)) as T;
+            return Components.OfType<T>().FirstOrDefault();
         }
 
         public void RemoveInstanceComponent<T>() where T : ItemInstanceComponent
