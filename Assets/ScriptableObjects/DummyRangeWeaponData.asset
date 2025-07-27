@@ -9,11 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eedae2c5fa0a031459a269fbd69f8d09, type: 3}
-  m_Name: UniqueItem
+  m_Script: {fileID: 11500000, guid: d859d4e49ba57ac41b86dff5fb336d55, type: 3}
+  m_Name: DummyRangeWeaponData
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: UNIQUE_TESTING
-  <Description>k__BackingField: UNIQUE!
+  <Name>k__BackingField: 
+  <Description>k__BackingField: 
   <Icon>k__BackingField: {fileID: 0}
   <CanStack>k__BackingField: 0
-  <Weight>k__BackingField: 1
+  <Weight>k__BackingField: 0
+  <Range>k__BackingField: 0
+  <Type>k__BackingField: 0
+  <MagSize>k__BackingField: 8
+  <RateOfFire>k__BackingField: 0
+  <AmmoType>k__BackingField: 0

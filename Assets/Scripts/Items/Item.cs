@@ -11,18 +11,20 @@ namespace Assets.Scripts.Items
     [Serializable]
     public abstract class ItemInstanceComponent
     {
-        public ItemInstance Owner { get; private set; }
+        public ItemInstance Owner { get; set; }
 
-        public ItemInstanceComponent(ItemInstance owner)
-        {
-            Owner = owner;
-        }
+        public abstract void Initialize(ItemInstance owner);
     }
 
     [Serializable]
     public class KeyItem : ItemInstanceComponent
     {
-        public KeyItem(ItemInstance owner) : base(owner) { }
+        public KeyItem() { }
+
+        public override void Initialize(ItemInstance owner)
+        {
+            Owner = owner;
+        }
     }
 
     [Serializable]
@@ -31,8 +33,11 @@ namespace Assets.Scripts.Items
         [field: SerializeField]
         public Resource CurrentCondition { get; private set; }
 
-        public Condition(ItemInstance owner) : base(owner)
+        public Condition() { }
+
+        public override void Initialize(ItemInstance owner)
         {
+            Owner = Owner;
             CurrentCondition ??= new Resource(75, 0, 120);
         }
 
@@ -78,12 +83,17 @@ namespace Assets.Scripts.Items
     public class Ammo : ItemInstanceComponent
     {
         [field: SerializeField]
+        public AmmoData AmmoDataSpecific { get; set; }
+        [field: SerializeField]
         public Resource CurrentAmmo { get; set; }
 
-        public Ammo(ItemInstance owner) : base(owner)
+        public Ammo() { }
+
+        public override void Initialize(ItemInstance owner)
         {
             RangeWeaponData rangeWeapon = owner.itemData as RangeWeaponData;
             CurrentAmmo = new Resource(rangeWeapon.MagSize, 0, rangeWeapon.MagSize);
+            Owner = owner;
         }
     }
 
@@ -106,7 +116,7 @@ namespace Assets.Scripts.Items
 
         public ItemInstance(ItemData itemData)
         {
-            Components = new List<ItemInstanceComponent>();
+            Components ??= new List<ItemInstanceComponent>();
             this.itemData = itemData;
 
             if (!itemData.CanStack)
@@ -115,8 +125,17 @@ namespace Assets.Scripts.Items
             }
         }
 
+        public void InitializeFromDefault()
+        {
+            foreach(var component in Components)
+            {
+                component.Initialize(this);
+            }
+        }
+
         public void AddInstanceComponent(ItemInstanceComponent component)
         {
+            component.Initialize(this);
             Components.Add(component);
         }
 

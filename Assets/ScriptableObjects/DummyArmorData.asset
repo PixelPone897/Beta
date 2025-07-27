@@ -9,16 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: TestRange
-  m_EditorClassIdentifier: Assembly-CSharp:Assets.Scripts.Items:RangeWeaponData
+  m_Script: {fileID: 11500000, guid: d1041457c3e1434449f727fe585f73b1, type: 3}
+  m_Name: DummyArmorData
+  m_EditorClassIdentifier: 
   <Name>k__BackingField: 
   <Description>k__BackingField: 
   <Icon>k__BackingField: {fileID: 0}
   <CanStack>k__BackingField: 0
   <Weight>k__BackingField: 0
-  <Range>k__BackingField: 0
-  <Type>k__BackingField: 0
-  <MagSize>k__BackingField: 8
-  <RateOfFire>k__BackingField: 0
-  <AmmoType>k__BackingField: 0
+  <Value>k__BackingField: 0
+  <DamageThreshold>k__BackingField: 0
+  <Faction>k__BackingField: 
+  <ValidLimbs>k__BackingField: 
+  <Effects>k__BackingField: []
+  references:
+    version: 2
+    RefIds: []
