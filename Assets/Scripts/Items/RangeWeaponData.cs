@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.Items;
 using Scripts.Perks;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "DummyRangeWeaponData", menuName = "Items/RangeWeaponData")]
@@ -17,6 +16,7 @@ public class RangeWeaponData : ItemData
     public int RateOfFire { get; private set; }
     [field: SerializeField]
     public int AmmoType { get; private set; }
-    [field: SerializeField, SubclassSelector]
-    public List<IRequirement> Requirements { get; private set; }
+    [field: SerializeField]
+    public SpecialRequirement StrengthRequirement { get; private set; }
+    // Add Special Rules
 }

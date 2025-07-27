@@ -16,12 +16,13 @@ namespace Assets.Scripts.Items
         public List<LimbName> ValidLimbs { get; private set; }
         [field: SerializeReference,  SubclassSelector]
         public List<IPerkEffect> Effects { get; private set; }
+        // Add Special Rules
 
         public void OnValidate()
         {
             if(ValidLimbs == null ||  ValidLimbs.Count == 0)
             {
-                Debug.LogWarning("An armor has to be assigned to one or more limb(s)!");
+                Debug.LogWarning("This armor is not assigned to at least one limb!");
             }
         }
     }

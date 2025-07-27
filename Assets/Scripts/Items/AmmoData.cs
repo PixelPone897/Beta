@@ -8,6 +8,6 @@ namespace Assets.Scripts.Items
         // Ints for testing purposes
         [field: SerializeField]
         public int Type { get; private set; }
-        // Special Rules Here
+        // Add Special Rules
     }
 }
