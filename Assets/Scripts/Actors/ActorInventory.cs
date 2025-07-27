@@ -17,7 +17,6 @@ namespace Assets.Scripts.Actors
         [field: SerializeField]
         private List<InventorySlot> inventorySlots;
 
-        public RangeWeaponData weaponData;
         private void Awake()
         {
             inventorySlots ??= new List<InventorySlot>();
