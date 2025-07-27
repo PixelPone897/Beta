@@ -448,9 +448,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8940c7256cd6dd243bab4e4aaa92bea2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventorySlots: []
-  testData: {fileID: 11400000, guid: 789c4aa21e82fe64bb3d68c9dbdd52e0, type: 2}
-  uniqueData: {fileID: 11400000, guid: 299f0372f67aa9a47ab306e0abac796d, type: 2}
+  inventorySlots:
+  - <Item>k__BackingField:
+      <UniqueId>k__BackingField: 
+      itemData: {fileID: 11400000, guid: b5c0d771ecd2ce944a05ce20711715a6, type: 2}
+      <Components>k__BackingField: []
+    <Amount>k__BackingField: 1
+  weaponData: {fileID: 0}
   references:
     version: 2
     RefIds: []

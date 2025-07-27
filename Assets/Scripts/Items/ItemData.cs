@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Scripts.Perks;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scripts.Items
 {
@@ -16,5 +18,7 @@ namespace Assets.Scripts.Items
 
         [field: SerializeField]
         public float Weight { get; private set; }
+        [field: SerializeField]
+        public float Value { get; private set; }
     }
 }

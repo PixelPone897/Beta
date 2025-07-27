@@ -12,16 +12,14 @@ namespace Assets.Scripts.Actors
     {
         private ActorSpecialStats specialStats;
 
-        private int numberOfBottleCaps;
+        private float numberOfBottleCaps;
         private Stat carryWeight;
         [field: SerializeField]
         private List<InventorySlot> inventorySlots;
 
-
         private void Awake()
         {
-            if(inventorySlots == null)
-                inventorySlots = new List<InventorySlot>();
+            inventorySlots ??= new List<InventorySlot>();
 
         }
 
@@ -33,6 +31,10 @@ namespace Assets.Scripts.Actors
             numberOfBottleCaps = 0;
             int carryCalcuation = Mathf.FloorToInt(25 + 25 * specialStats.Strength.GetValue());
             carryWeight = new Stat(carryCalcuation);
+            foreach(InventorySlot editorSlots in inventorySlots)
+            {
+                editorSlots.Item.InitializeFromDefault();
+            }
         }
 
         // Update is called once per frame
