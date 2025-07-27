@@ -1,4 +1,5 @@
 ﻿using Scripts;
+using Scripts.Perks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -93,6 +94,45 @@ namespace Assets.Scripts.Items
         {
             RangeWeaponData rangeWeapon = owner.itemData as RangeWeaponData;
             CurrentAmmo = new Resource(rangeWeapon.MagSize, 0, rangeWeapon.MagSize);
+            Owner = owner;
+        }
+    }
+
+    [Serializable]
+    public class Armor : ItemInstanceComponent
+    {
+        [field: SerializeField]
+        public Stat CurrentDT;
+        [field: SerializeReference, SubclassSelector]
+        public List<IPerkEffect> CurrentEffects { get; set; }
+
+        public Armor() { }
+        public override void Initialize(ItemInstance owner)
+        {
+            ArmorData armorData = owner.itemData as ArmorData;
+            CurrentDT = new Stat(armorData.DamageThreshold);
+            CurrentEffects = new List<IPerkEffect>(armorData.Effects);
+            Owner = owner;
+        }
+    }
+
+    [Serializable]
+    public class Shield : ItemInstanceComponent
+    {
+        [field: SerializeField]
+        public Stat CurrentMeleeDT { get; set; }
+        [field: SerializeField]
+        public Stat CurrentProjectileDT { get; set; }
+        [field: SerializeField]
+        public Stat CurrentMagicDT { get; set; }
+
+        public Shield() { }
+        public override void Initialize(ItemInstance owner)
+        {
+            ShieldData shieldData = owner.itemData as ShieldData;
+            CurrentMeleeDT = new Stat(shieldData.MeleeDamageThreshold);
+            CurrentProjectileDT = new Stat(shieldData.ProjectileDamageThreshold);
+            CurrentMagicDT = new Stat(shieldData.MagicDamageThreshold);
             Owner = owner;
         }
     }

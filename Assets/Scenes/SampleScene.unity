@@ -454,7 +454,6 @@ MonoBehaviour:
       itemData: {fileID: 11400000, guid: b5c0d771ecd2ce944a05ce20711715a6, type: 2}
       <Components>k__BackingField: []
     <Amount>k__BackingField: 1
-  weaponData: {fileID: 0}
   references:
     version: 2
     RefIds: []
