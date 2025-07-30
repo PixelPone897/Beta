@@ -160,11 +160,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 116792774}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f0c51323d38f6446b666cab423cdd68, type: 3}
+  m_Script: {fileID: 11500000, guid: 9aafa2fa8edebc647b14f8c3e0342bbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityList:
-  - {fileID: 471690545}
 --- !u!1 &471690542
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,7 +172,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 471690544}
-  - component: {fileID: 471690543}
   - component: {fileID: 471690545}
   m_Layer: 0
   m_Name: TestPlayer
@@ -183,18 +180,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &471690543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 471690542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5af54e66a427a745984e6d447cf61d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &471690544
 Transform:
   m_ObjectHideFlags: 0
@@ -477,132 +462,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &801507299
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 801507302}
-  - component: {fileID: 801507301}
-  - component: {fileID: 801507303}
-  - component: {fileID: 801507304}
-  m_Layer: 0
-  m_Name: Dummy
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &801507301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 801507299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91cac8cb58c84fb47b4d99222d1bc0d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <ActorName>k__BackingField: DUMMY_STRING
-  <Level>k__BackingField: 1
-  <Experience>k__BackingField: 0
-  <Race>k__BackingField: 0
-  <Age>k__BackingField: 0
-  <Gender>k__BackingField: 0
-  <Strength>k__BackingField:
-    <BaseValue>k__BackingField: 5
-    <PlusModifiers>k__BackingField: []
-    <MultiplyModifiers>k__BackingField: []
-  <Perception>k__BackingField:
-    <BaseValue>k__BackingField: 5
-    <PlusModifiers>k__BackingField: []
-    <MultiplyModifiers>k__BackingField: []
-  <Endurance>k__BackingField:
-    <BaseValue>k__BackingField: 5
-    <PlusModifiers>k__BackingField: []
-    <MultiplyModifiers>k__BackingField: []
-  <Charisma>k__BackingField:
-    <BaseValue>k__BackingField: 5
-    <PlusModifiers>k__BackingField: []
-    <MultiplyModifiers>k__BackingField: []
-  <Intelligence>k__BackingField:
-    <BaseValue>k__BackingField: 5
-    <PlusModifiers>k__BackingField: []
-    <MultiplyModifiers>k__BackingField: []
-  <Agility>k__BackingField:
-    <BaseValue>k__BackingField: 5
-    <PlusModifiers>k__BackingField: []
-    <MultiplyModifiers>k__BackingField: []
-  <Luck>k__BackingField:
-    <BaseValue>k__BackingField: 5
-    <PlusModifiers>k__BackingField: []
-    <MultiplyModifiers>k__BackingField: []
---- !u!4 &801507302
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 801507299}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &801507303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 801507299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 132d2d9e3ec8c6544af59f9eaedc70c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  equippedPerks: []
-  references:
-    version: 2
-    RefIds: []
---- !u!114 &801507304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 801507299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8940c7256cd6dd243bab4e4aaa92bea2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventorySlots:
-  - <Item>k__BackingField:
-      <UniqueId>k__BackingField: 
-      itemData: {fileID: 11400000, guid: b5c0d771ecd2ce944a05ce20711715a6, type: 2}
-      <Components>k__BackingField:
-      - rid: -2
-    <Amount>k__BackingField: 1
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 801507302}
   - {fileID: 116792775}
   - {fileID: 471690544}

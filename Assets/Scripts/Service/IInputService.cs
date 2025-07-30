@@ -1,0 +1,17 @@
+﻿using System;
+using UnityEngine;
+
+namespace Assets.Scripts.Service
+{
+    public interface IInputService
+    {
+        public event EventHandler<Vector2> OnMoveInput;
+        public abstract void EnableInput();
+        public abstract void DisableInput();
+    }
+
+    public interface IInjectService<T>
+    {
+        public void Inject(T instance);
+    }
+}
