@@ -1,5 +1,8 @@
-﻿using Assets.Scripts.Items;
+﻿using Assets.Scripts.Combat;
+using Assets.Scripts.Items;
+using NUnit.Framework;
 using Scripts.Perks;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "DummyRangeWeaponData", menuName = "Items/RangeWeaponData")]
@@ -19,4 +22,8 @@ public class RangeWeaponData : ItemData
     [field: SerializeField]
     public SpecialRequirement StrengthRequirement { get; private set; }
     // Add Special Rules
+
+    // Actions
+    [field: SerializeReference, SubclassSelector]
+    public List<CombatAction> CombatActions { get; private set; }
 }

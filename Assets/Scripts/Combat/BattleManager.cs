@@ -35,17 +35,18 @@ namespace Assets.Scripts.Combat
             combatActionQueue = new List<CombatAction>();
         }
 
-        private void Update()
+        private void Start()
         {
-            currentCombatAction?.UpdateAction();
+            PlayerCombatInput input = entityList[0].GetComponent<PlayerCombatInput>();
+
         }
 
-        private IEnumerator RunCombatAction(CombatAction action)
+        private void Update()
         {
-            currentCombatAction = action;
-            action.Initialize(this, action.Owner);
-            yield return StartCoroutine(action.Execute());
-            currentCombatAction = null;
+            if(!currentCombatAction.IsFinished())
+            {
+
+            }
         }
 
         /// <summary>

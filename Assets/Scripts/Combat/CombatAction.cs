@@ -9,6 +9,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Combat
 {
+    [Serializable]
     /// <summary>
     /// Represents a full combat decision in battle such as "Fire" or "Reload".
     /// Manages a queue of CombatSteps which actually execute the action.
@@ -52,6 +53,7 @@ namespace Assets.Scripts.Combat
         /// </summary>
         protected BattleManager battleManager;
 
+        [SerializeReference, SubclassSelector]
         protected Queue<CombatStep> combatSteps;
 
         public virtual void Initialize(BattleManager bm, ActorSpecialStats owner)
@@ -85,12 +87,13 @@ namespace Assets.Scripts.Combat
         /// <summary>
         /// Coroutine that runs all steps in sequence.
         /// </summary>
-        public virtual IEnumerator Execute()
+        public virtual void Execute()
         {
             while (combatSteps.Count > 0)
             {
                 CombatStep step = combatSteps.Dequeue();
-                yield return step.Execute(battleManager, this);
+                //yield return step.Execute(battleManager, this);
+                step.Execute(battleManager, this);
             }
         }
 
@@ -104,27 +107,13 @@ namespace Assets.Scripts.Combat
         public abstract bool CanBePerformed();
 
         /// <summary>
-        /// Indicates if the CombatState is finished.
+        /// Indicates if the CombatAction is finished.
         /// </summary>
         /// <returns>
-        /// True- if the CombatState is finished.
-        /// False- if the CombatState is not finished.
+        /// True- if the CombatAction is finished.
+        /// False- if the CombatAction is not finished.
         /// </returns>
         public abstract bool IsFinished();
 
-    }
-
-    /// <summary>
-    /// Represents a discrete phase or step within a CombatAction.
-    /// </summary>
-    public abstract class CombatStep
-    {
-        /// <summary>
-        /// Run the logic for this step.
-        /// Should yield until the step is complete (e.g., player input, animation, delay).
-        /// </summary>
-        /// <param name="battleManager">The BattleManager to get global battle context.</param>
-        /// <param name="parentAction">The CombatAction that owns this step.</param>
-        public abstract IEnumerator Execute(BattleManager battleManager, CombatAction parentAction);
     }
 }
