@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using System;
 
 namespace Assets.Scripts.Combat
 {
     /// <summary>
     /// Represents a discrete phase or step within a CombatAction.
     /// </summary>
+    [Serializable]
     public abstract class CombatStep
     {
         /// <summary>

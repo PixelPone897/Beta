@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace Assets.Scripts.Combat
 {
-    [Serializable]
     /// <summary>
     /// Represents a full combat decision in battle such as "Fire" or "Reload".
     /// Manages a queue of CombatSteps which actually execute the action.
     /// </summary>
+    [Serializable]
     public abstract class CombatAction
     {
 
@@ -49,8 +49,9 @@ namespace Assets.Scripts.Combat
         /// </summary>
         protected BattleManager battleManager;
 
+        // SerializeReference only works with Lists
         [SerializeReference, SubclassSelector]
-        public Queue<CombatStep> combatSteps;
+        protected List<CombatStep> combatSteps;
 
         public virtual void Initialize(BattleManager bm, ActorSpecialStats owner)
         {
@@ -87,7 +88,8 @@ namespace Assets.Scripts.Combat
         {
             while (combatSteps.Count > 0)
             {
-                CombatStep step = combatSteps.Dequeue();
+                CombatStep step = combatSteps[0];
+                combatSteps.RemoveAt(0);
                 //yield return step.Execute(battleManager, this);
                 step.Execute(battleManager, this);
             }

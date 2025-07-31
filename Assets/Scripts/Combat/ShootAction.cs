@@ -8,11 +8,14 @@ using UnityEngine.Rendering;
 
 namespace Assets.Scripts.Combat
 {
+    [Serializable]
     public class ShootAction : CombatAction, IInjectService<IInputService>
     {
         private IInputService inputService;
 
         public void Inject(IInputService instance) => inputService = instance;
+
+        public ShootAction() { }
 
         protected override void SetupSteps()
         {

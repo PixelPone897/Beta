@@ -26,15 +26,16 @@ MonoBehaviour:
   <StrengthRequirement>k__BackingField:
     specialToCheck: 0
     specialReq: 0
-  <CombatActions>k__BackingField:
-  - rid: 3979956789741879362
+  <combatActions>k__BackingField:
+  - rid: 3979956818035343360
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 3979956789741879362
+    - rid: 3979956818035343360
       type: {class: ShootAction, ns: Assets.Scripts.Combat, asm: Assembly-CSharp}
       data:
         combatSteps:
-          rid: -2
+        - rid: 3979956818035343361
+    - rid: 3979956818035343361
+      type: {class: AimStep, ns: Assets.Scripts.Combat, asm: Assembly-CSharp}
+      data: 

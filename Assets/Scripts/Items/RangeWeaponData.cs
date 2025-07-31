@@ -22,4 +22,7 @@ public class RangeWeaponData : ItemData
     [field: SerializeField]
     public SpecialRequirement StrengthRequirement { get; private set; }
     // Add Special Rules
+
+    [field: SerializeReference, SubclassSelector]
+    public List<CombatAction> combatActions { get; private set; }
 }
