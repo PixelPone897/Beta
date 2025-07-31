@@ -18,7 +18,7 @@ namespace Assets.Scripts.Combat
             Debug.Log("TESTING: " + input);
         }
 
-        public override void Execute()
+        public override void Execute(BattleManager manager, CombatAction parent)
         {
             input.EnableInput();
             input.OnMoveInput += Input_OnMoveInput;

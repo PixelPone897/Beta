@@ -3,7 +3,7 @@
 namespace Assets.Scripts.Combat
 {
     /// <summary>
-    /// Represents a discrete phase or step within a CombatAction.
+    /// Represents a discrete phase or step within a CombatActionData.
     /// </summary>
     public abstract class CombatStep
     {
@@ -12,7 +12,7 @@ namespace Assets.Scripts.Combat
         /// Should yield until the step is complete (e.g., player input, animation, delay).
         /// </summary>
         /// <param name="battleManager">The BattleManager to get global battle context.</param>
-        /// <param name="parentAction">The CombatAction that owns this step.</param>
-        public abstract void Execute();
+        /// <param name="parentAction">The CombatActionData that owns this step.</param>
+        public abstract void Execute(BattleManager battleManager, CombatAction owner);
     }
 }
