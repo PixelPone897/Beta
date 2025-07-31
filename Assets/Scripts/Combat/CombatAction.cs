@@ -1,5 +1,6 @@
 ﻿using Scripts.Actors;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Combat
@@ -48,8 +49,8 @@ namespace Assets.Scripts.Combat
         /// </summary>
         protected BattleManager battleManager;
 
-        //[SerializeReference, SubclassSelector]
-        //protected Queue<CombatStep> combatSteps;
+        [SerializeReference, SubclassSelector]
+        public Queue<CombatStep> combatSteps;
 
         public virtual void Initialize(BattleManager bm, ActorSpecialStats owner)
         {
@@ -61,7 +62,7 @@ namespace Assets.Scripts.Combat
         /// <summary>
         /// Define the sequence of CombatSteps this action will execute.
         /// </summary>
-        public abstract void SetupSteps();
+        protected abstract void SetupSteps();
 
         /// <summary>
         /// Updates logic each frame while this CombatAction is active.
@@ -84,12 +85,12 @@ namespace Assets.Scripts.Combat
         /// </summary>
         public virtual void Execute()
         {
-            //while (combatSteps.Count > 0)
-            //{
-            //    CombatStep step = combatSteps.Dequeue();
-            //    //yield return step.Execute(battleManager, this);
-            //    step.Execute(battleManager, this);
-            //}
+            while (combatSteps.Count > 0)
+            {
+                CombatStep step = combatSteps.Dequeue();
+                //yield return step.Execute(battleManager, this);
+                step.Execute(battleManager, this);
+            }
         }
 
         /// <summary>

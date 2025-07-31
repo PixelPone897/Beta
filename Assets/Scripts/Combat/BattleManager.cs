@@ -1,19 +1,20 @@
 ﻿using Assets.Scripts.Service;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Combat
 {
     public class BattleManager : MonoBehaviour
     {
-        public IInputService testing;
-        private AimAction testAction;
-
         private void Start()
         {
-            testing = new PlayerCombatInputService();
-            testAction = new AimAction();
-            testAction.Inject(testing);
-            testAction.SetupSteps();
+            PlayerCombatInputService testInput = new PlayerCombatInputService();
+            ShootAction action = new ShootAction();
+            action.combatSteps = new Queue<CombatStep>();
+            action.combatSteps.Enqueue(new AimStep());
+            action.Inject(testInput);
+            action.Initialize(this, null);
+            action.Execute();
         }
     }
 }
