@@ -1,26 +1,25 @@
-﻿using Assets.Scripts.Items;
-using Assets.Scripts.Service;
+﻿using Assets.Scripts.Service;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Combat
 {
     public class BattleManager : MonoBehaviour
     {
-        public RangeWeaponData testItem;
+        [SerializeReference, SubclassSelector]
+        public CombatStepDefinition stepDefinition;
 
         private void Start()
         {
-            PlayerCombatInputService testInput = new();
-            foreach(CombatAction action in testItem.combatActions)
-            {
-                if(action is IInjectService<IInputService> injectService)
-                {
-                    injectService.Inject(testInput);
-                }
-                action.Initialize(this, null);
-            }
-
-            testItem.combatActions[0].Execute();
+            UnityServiceProvider testProvider = new UnityServiceProvider();
+            testProvider.RegisterService<IInputService>(new PlayerCombatInputService());
+            AimStepDefinition test = new();
+            CombatStep testStep = test.CreateStep(testProvider);
+            testStep.Execute();
         }
     }
 }

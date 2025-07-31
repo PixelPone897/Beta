@@ -9,9 +9,4 @@ namespace Assets.Scripts.Service
         public abstract void EnableInput();
         public abstract void DisableInput();
     }
-
-    public interface IInjectService<T>
-    {
-        public void Inject(T instance);
-    }
 }

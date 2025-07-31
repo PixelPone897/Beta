@@ -1,27 +1,26 @@
 ﻿using Assets.Scripts.Service;
-using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Combat
 {
-    [Serializable]
-    public class AimStep : CombatStep, IInjectService<IInputService>
+    public class AimStep : CombatStep
     {
         private IInputService input;
 
-        public void Inject(IInputService instance) => input = instance;
-
-        public AimStep() { }
-
-        private void Input_OnMoveInput(object sender, Vector2 input)
+        public AimStep(IInputService inputService)
         {
-            Debug.Log("TESTING: " + input);
+            input = inputService;
         }
 
-        public override void Execute(BattleManager battleManager, CombatAction parentAction)
+        public override void Execute()
         {
             input.EnableInput();
-            input.OnMoveInput += Input_OnMoveInput;
+            input.OnMoveInput += OnMoveInputReceived;
+        }
+
+        private void OnMoveInputReceived(object sender, Vector2 e)
+        {
+            Debug.Log("TESTING! " + e);
         }
     }
 }
