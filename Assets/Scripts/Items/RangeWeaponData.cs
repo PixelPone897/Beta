@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Items;
+﻿using Assets.Scripts.Combat;
+using Assets.Scripts.Items;
 using NUnit.Framework;
 using Scripts.Perks;
 using System.Collections.Generic;
@@ -21,4 +22,7 @@ public class RangeWeaponData : ItemData
     [field: SerializeField]
     public SpecialRequirement StrengthRequirement { get; private set; }
     // Add Special Rules
+
+    [field: SerializeReference, SubclassSelector]
+    public List<CombatActionData> Actions { get; private set; }
 }

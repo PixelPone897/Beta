@@ -50,7 +50,9 @@ namespace Assets.Scripts.Combat
 
         protected Queue<CombatStep> combatSteps;
 
-        public virtual void Initialize(BattleManager bm, ActorSpecialStats owner)
+        protected CombatStep currentCombatStep;
+
+        public virtual void StartAction(BattleManager bm, ActorSpecialStats owner)
         {
             battleManager = bm;
             Owner = owner;
@@ -61,29 +63,26 @@ namespace Assets.Scripts.Combat
         /// </summary>
         public virtual void UpdateAction()
         {
+            while(combatSteps.Count > 0)
+            {
+                if(currentCombatStep != null && !currentCombatStep.IsFinished())
+                {
+                    currentCombatStep.UpdateStep();
+                }
+                else
+                {
+                    currentCombatStep?.EndStep();
+                    currentCombatStep = combatSteps.Dequeue();
+                    currentCombatStep.StartStep(battleManager, this);
+                }
+            }
             // Optional override in derived classes for per-frame behavior
         }
 
         /// <summary>
         /// Cleans up Action- logic called when all steps of this CombatAction is finished.
         /// </summary>
-        public virtual void EndAction()
-        {
-            // Cleanup, notifications, etc. (optional override)
-        }
-
-        /// <summary>
-        /// Coroutine that runs all steps in sequence.
-        /// </summary>
-        public virtual void Execute()
-        {
-            while (combatSteps.Count > 0)
-            {
-                CombatStep step = combatSteps.Dequeue();
-                //yield return step.Execute(battleManager, this);
-                step.Execute(battleManager, this);
-            }
-        }
+        public abstract void EndAction();
 
         /// <summary>
         /// Indicates if CombatAction can be performed.
@@ -102,7 +101,6 @@ namespace Assets.Scripts.Combat
         /// False- if the CombatAction is not finished.
         /// </returns>
         public abstract bool IsFinished();
-
     }
 
     public class TestAction : CombatAction
@@ -114,6 +112,11 @@ namespace Assets.Scripts.Combat
         }
 
         public override bool CanBePerformed()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void EndAction()
         {
             throw new NotImplementedException();
         }

@@ -18,10 +18,20 @@ namespace Assets.Scripts.Combat
             Debug.Log("TESTING: " + input);
         }
 
-        public override void Execute(BattleManager manager, CombatAction parent)
+        public override void StartStep(BattleManager battleManager, CombatAction owner)
         {
             input.EnableInput();
             input.OnMoveInput += Input_OnMoveInput;
+        }
+
+        public override void EndStep()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool IsFinished()
+        {
+            throw new NotImplementedException();
         }
     }
 }

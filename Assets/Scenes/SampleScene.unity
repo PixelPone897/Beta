@@ -163,6 +163,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aafa2fa8edebc647b14f8c3e0342bbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actionData:
+    rid: 3979956832699154500
+  references:
+    version: 2
+    RefIds:
+    - rid: 3979956832699154500
+      type: {class: TestActionData, ns: Assets.Scripts.Combat, asm: Assembly-CSharp}
+      data:
+        combatStepDatas:
+        - rid: 3979956832699154501
+    - rid: 3979956832699154501
+      type: {class: AimStepData, ns: Assets.Scripts.Combat, asm: Assembly-CSharp}
+      data: 
 --- !u!1 &471690542
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,7 +18,8 @@ namespace Assets.Scripts.Combat
             UnityServiceProvider testProvider = new();
             testProvider.RegisterService<IInputService>(new PlayerCombatInputService());
             CombatAction combatAction = actionData.Create(testProvider);
-            combatAction.Execute();
+            combatAction.StartAction(this, null);
+            combatAction.UpdateAction();
         }
     }
 }
