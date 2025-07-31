@@ -35,7 +35,7 @@ MonoBehaviour:
       type: {class: ShootAction, ns: Assets.Scripts.Combat, asm: Assembly-CSharp}
       data:
         combatSteps:
-        - rid: 3979956818035343361
-    - rid: 3979956818035343361
+        - rid: 3979956818161172546
+    - rid: 3979956818161172546
       type: {class: AimStep, ns: Assets.Scripts.Combat, asm: Assembly-CSharp}
       data: 

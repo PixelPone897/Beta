@@ -33,7 +33,7 @@ namespace Assets.Scripts.Actors
             carryWeight = new Stat(carryCalcuation);
             foreach(InventorySlot editorSlots in inventorySlots)
             {
-                editorSlots.Item.InitializeFromDefault();
+                editorSlots.Item.Initialize();
             }
         }
 

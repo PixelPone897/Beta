@@ -38,7 +38,7 @@ namespace Assets.Scripts.Items
 
         public override void Initialize(ItemInstance owner)
         {
-            Owner = Owner;
+            Owner = owner;
             CurrentCondition ??= new Resource(75, 0, 120);
         }
 
@@ -165,7 +165,7 @@ namespace Assets.Scripts.Items
             }
         }
 
-        public void InitializeFromDefault()
+        public void Initialize()
         {
             foreach(var component in Components)
             {
