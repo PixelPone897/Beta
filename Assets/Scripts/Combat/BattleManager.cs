@@ -11,15 +11,14 @@ namespace Assets.Scripts.Combat
     public class BattleManager : MonoBehaviour
     {
         [SerializeReference, SubclassSelector]
-        public CombatStepDefinition stepDefinition;
+        public CombatStepData stepData;
 
-        private void Start()
+        public void Start()
         {
-            UnityServiceProvider testProvider = new UnityServiceProvider();
+            UnityServiceProvider testProvider = new();
             testProvider.RegisterService<IInputService>(new PlayerCombatInputService());
-            AimStepDefinition test = new();
-            CombatStep testStep = test.CreateStep(testProvider);
-            testStep.Execute();
+            CombatStep test = stepData.Create(testProvider);
+            test.Execute();
         }
     }
 }

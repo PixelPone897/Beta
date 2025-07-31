@@ -6,12 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Service
 {
-    public interface IGameServiceProvider : IServiceProvider
-    {
-        T GetService<T>();
-    }
-
-    public class UnityServiceProvider : IGameServiceProvider
+    public class UnityServiceProvider : IServiceProvider
     {
         private Dictionary<Type, object> services;
 
@@ -20,9 +15,9 @@ namespace Assets.Scripts.Service
             services = new Dictionary<Type, object>();
         }
 
-        public T GetService<T>()
+        public void RegisterService<T>(T service)
         {
-            return (T) GetService(typeof(T));
+            services[typeof(T)] = service;
         }
 
         public object GetService(Type serviceType)
@@ -31,9 +26,9 @@ namespace Assets.Scripts.Service
             return result;
         }
 
-        public void RegisterService<T>(T instance)
+        public T GetService<T>()
         {
-            services[typeof(T)] = instance;
+            return (T) GetService(typeof(T));
         }
     }
 }
