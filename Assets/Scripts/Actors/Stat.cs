@@ -5,13 +5,33 @@ using static Scripts.Constants;
 
 namespace Scripts
 {
+    /// <summary>
+    /// Logic class used for handling stats in system.
+    /// </summary>
+    /// <remarks>
+    /// Given that stats in this system can be modified in a variety of ways
+    /// through temporary and permanent modifiers, this class helps to organize,
+    /// store, and handle that logic.
+    /// </remarks>
     [System.Serializable]
     public class Stat
     {
+        /// <summary>
+        /// Base value of this stat, meaning this value without any permanent
+        /// or temporary modifiers.
+        /// </summary>
         [field: SerializeField]
         public float BaseValue { get; set; }
+
+        /// <summary>
+        /// Any addition or subtraction modifiers associated with this stat.
+        /// </summary>
         [field: SerializeField]
         public List<StatModifier> PlusModifiers { get; private set; }
+
+        /// <summary>
+        /// Any multiplication or division modifiers associated with this stat.
+        /// </summary>
         [field: SerializeField]
         public List<StatModifier> MultiplyModifiers { get; private set; }
 
@@ -41,6 +61,11 @@ namespace Scripts
             }
         }
 
+        /// <summary>
+        /// Calculates and returns the value of this stat, including any permanent
+        /// and temporary modifiers that are associated with it.
+        /// </summary>
+        /// <returns>The value of this value after applying any modifiers associated with it.</returns>
         public float GetValue()
         {
             float value = BaseValue;
@@ -55,6 +80,12 @@ namespace Scripts
             return value;
         }
 
+        /// <summary>
+        /// Calculates and returns a value after applying all of the current
+        /// modifiers associated with this stat.
+        /// </summary>
+        /// <param name="value">The base value being used.</param>
+        /// <returns>The value after all current modifiers have been applied to it.</returns>
         public float ApplyModifiers(float value)
         {
             foreach (StatModifier modifier in PlusModifiers)
@@ -68,6 +99,12 @@ namespace Scripts
             return value;
         }
 
+        /// <summary>
+        /// Calculates and returns the value of this stat, only accounting
+        /// for any permanent modifiers associated with it.
+        /// </summary>
+        /// <returns>The value of this value after applying any
+        /// permanent modifiers associated with it.</returns>s
         public float GetPermanentValue()
         {
             // Use LINQ method for practice
@@ -84,6 +121,12 @@ namespace Scripts
             return value;
         }
 
+        /// <summary>
+        /// Clears out all temporary modifiers associated with this stat.
+        /// </summary>
+        /// <remarks>
+        /// This is useful for temporary effects like status effects or temporary buffs.
+        /// </remarks>
         public void ClearTemporaryModifiers()
         {
             // Remove non-permanent modifiers
@@ -99,11 +142,26 @@ namespace Scripts
         }
     }
 
+    /// <summary>
+    /// Modifier for a Stat.
+    /// </summary>
+    /// <seealso cref="Stat"/>
     [System.Serializable]
     public class StatModifier
     {
+        /// <summary>
+        /// The value in which this modifier should change the Stat in question.
+        /// </summary>
         [field: SerializeField]
         public float Value { get; private set; }
+
+        /// <summary>
+        /// If this modifier is considered "permanent" or not.
+        /// </summary>
+        /// <remarks>
+        /// This is important with regards to calculating a Stat's permanent or temporary
+        /// value (or even including both).
+        /// </remarks>
         [field: SerializeField]
         public bool IsPermanent { get; private set; }
 
@@ -114,13 +172,29 @@ namespace Scripts
         }
     }
 
+    /// <summary>
+    /// Represents a Stat that is part of defined range (Health, AP, etc).
+    /// </summary>
+    /// <seealso cref="Stat"/>
+    /// <seealso cref="StatModifier"/>
     [System.Serializable]
     public class Resource
     {
+        /// <summary>
+        /// The current value of this Resource.
+        /// </summary>
         [field: SerializeField]
         public float CurrentValue { get; private set; }
+
+        /// <summary>
+        /// The minimum value that this Resource can be.
+        /// </summary>
         [field: SerializeField]
         public Stat MinValue { get; set; }
+
+        /// <summary>
+        /// The maximum value that this Resource can be.
+        /// </summary>
         [field: SerializeField]
         public Stat MaxValue { get; set; }
 
@@ -145,12 +219,20 @@ namespace Scripts
             CurrentValue = Mathf.Clamp(currentValue, MinValue.GetValue(), MaxValue.GetValue());
         }
 
+        /// <summary>
+        /// Adds/Subtracts a value to the current value of this Resource.
+        /// </summary>
+        /// <param name="value">The amount to be added/subtracted to this Resource.</param>
         public void Add(float value)
         {
             float possibleNewValue = CurrentValue + value;
             CurrentValue = Mathf.Clamp(possibleNewValue, MinValue.GetValue(), MaxValue.GetValue());
         }
 
+        /// <summary>
+        /// Multiplies/Divides a value to the current value of this Resource.
+        /// </summary>
+        /// <param name="value">The amount to be multiplied/divided to this Resource.</param>
         public void Multiply(float value)
         {
             float possibleNewValue = CurrentValue * value;
