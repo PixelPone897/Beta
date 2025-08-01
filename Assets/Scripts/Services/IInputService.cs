@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets.Scripts.Service
+namespace Assets.Scripts.Services
 {
     /// <summary>
     /// Interface for handling input.

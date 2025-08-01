@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Service
+namespace Assets.Scripts.Services
 {
     /// <summary>
     /// Provider that handles registering and storing specific logic services and contexts at runtime.

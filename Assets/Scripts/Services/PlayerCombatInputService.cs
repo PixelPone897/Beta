@@ -2,7 +2,7 @@
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
 
-namespace Assets.Scripts.Service
+namespace Assets.Scripts.Services
 {
     /// <summary>
     /// Service that handles input from the player.
