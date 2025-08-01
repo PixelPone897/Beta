@@ -5,9 +5,16 @@ using UnityEngine;
 
 namespace Scripts.Actors
 {
+    /// <summary>
+    /// Stores the Perks associated with an Actor.
+    /// </summary>
     [RequireComponent(typeof(ActorSpecialStats))]
     public class ActorPerks : MonoBehaviour
     {
+        /// <summary>
+        /// All Perks equipped by an Actor.
+        /// </summary>
+        /// <seealso cref="Perk"/>
         [SerializeField]
         private List<Perk> equippedPerks;
 
@@ -25,6 +32,12 @@ namespace Scripts.Actors
 
         }
 
+        /// <summary>
+        /// Equips a perk to an Actor.
+        /// </summary>
+        /// <param name="perkToBeAdded"></param>
+        /// <returns>True- Perk was able to be equipped to Actor.
+        /// False- Perk was not able to be equipped to Actor.</returns>
         public bool EquipPerk(Perk perkToBeAdded)
         {
             if(equippedPerks.Contains(perkToBeAdded))
@@ -55,6 +68,11 @@ namespace Scripts.Actors
             return false;
         }
 
+        /// <summary>
+        /// Unequips Perk from an Actor.
+        /// </summary>
+        /// <param name="perk">Perk that is being removed from Actor.</param>
+        /// <returns></returns>
         public bool UnequipPerk(Perk perk)
         {
             if (!equippedPerks.Contains(perk))

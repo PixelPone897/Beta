@@ -5,6 +5,9 @@ using static Scripts.Constants;
 
 namespace Scripts.Actors
 {
+    /// <summary>
+    /// Represents the vital stats of an Actor (Health, Healing Rate, etc).
+    /// </summary>
     [RequireComponent(typeof(ActorSpecialStats))]
     public class ActorVitals : MonoBehaviour
     {
@@ -58,6 +61,11 @@ namespace Scripts.Actors
         {
 
         }
+
+        /// <summary>
+        /// Updates the current Radiation Status of an Actor.
+        /// </summary>
+        /// <returns>The new Radiation Status for an Actor.</returns>
         public RadiationStatus GetRadiationStatus()
         {
             if(Rads.CurrentValue < 200)
@@ -86,6 +94,10 @@ namespace Scripts.Actors
             }
         }
 
+        /// <summary>
+        /// Implements the proper debuffs for an Actor based on their
+        /// current Radiation Status.
+        /// </summary>
         public void SetRadiationDebuffs()
         {
             foreach(var radiationEffect in radiationEffects)
@@ -142,6 +154,12 @@ namespace Scripts.Actors
         }
     }
 
+    /// <summary>
+    /// Represents an Actor's Limb.
+    /// </summary>
+    /// <remarks>
+    /// This is used for targetting shots, equipping armor, etc.
+    /// </remarks>
     [System.Serializable]
     public class ActorLimb
     {
