@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Service;
+﻿using Assets.Scripts.Items;
+using Assets.Scripts.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,15 @@ namespace Assets.Scripts.Combat
         [SerializeReference, SubclassSelector]
         public CombatActionData actionData;
 
+        [SerializeField]
+        private ItemInstance item;
+
         public void Start()
         {
             UnityServiceProvider testProvider = new();
             testProvider.RegisterService<IInputService>(new PlayerCombatInputService());
             CombatAction combatAction = actionData.Create(testProvider);
+            combatAction.InjectContextToSteps(item);
             combatAction.StartAction(this, null);
             combatAction.UpdateAction();
         }

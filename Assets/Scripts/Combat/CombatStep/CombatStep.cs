@@ -29,5 +29,7 @@ namespace Assets.Scripts.Combat
         public abstract void EndStep();
 
         public abstract bool IsFinished();
+
+        public abstract bool CanBePerformed();
     }
 }

@@ -1,12 +1,16 @@
-﻿using Assets.Scripts.Service;
+﻿using Assets.Scripts.Items;
+using Assets.Scripts.Service;
 using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Combat
 {
-    internal class AimStep : CombatStep
+    internal class AimStep : CombatStep, IInjectContext<ItemInstance>
     {
+        private ItemInstance itemInstance;
         private IInputService input;
+
+        public void InjectContext(ItemInstance context) => itemInstance = context;
 
         public AimStep(IInputService input)
         {
@@ -32,6 +36,11 @@ namespace Assets.Scripts.Combat
         public override bool IsFinished()
         {
             throw new NotImplementedException();
+        }
+
+        public override bool CanBePerformed()
+        {
+            return itemInstance?.GetInstanceComponent<Ammo>().CurrentAmmo.CurrentValue > 0;
         }
     }
 }

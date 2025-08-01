@@ -1,4 +1,6 @@
-﻿using Scripts.Actors;
+﻿using Assets.Scripts.Items;
+using Assets.Scripts.Service;
+using Scripts.Actors;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -73,7 +75,14 @@ namespace Assets.Scripts.Combat
                 {
                     currentCombatStep?.EndStep();
                     currentCombatStep = combatSteps.Dequeue();
-                    currentCombatStep.StartStep(battleManager, this);
+                    if(currentCombatStep.CanBePerformed())
+                    {
+                        currentCombatStep.StartStep(battleManager, this);
+                    }
+                    else
+                    {
+                        combatSteps.Clear();
+                    }
                 }
             }
             // Optional override in derived classes for per-frame behavior
@@ -101,11 +110,21 @@ namespace Assets.Scripts.Combat
         /// False- if the CombatAction is not finished.
         /// </returns>
         public abstract bool IsFinished();
+
+        public virtual void InjectContextToSteps<T>(T context)
+        {
+            foreach (var step in combatSteps)
+            {
+                if (step is IInjectContext<T> injectable)
+                {
+                    injectable.InjectContext(context);
+                }
+            }
+        }
     }
 
     public class TestAction : CombatAction
     {
-
         public TestAction(Queue<CombatStep> combatSteps)
         {
             this.combatSteps = combatSteps;

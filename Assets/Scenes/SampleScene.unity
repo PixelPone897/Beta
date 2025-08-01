@@ -165,6 +165,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionData:
     rid: 3979956832699154500
+  item:
+    <UniqueId>k__BackingField: 
+    itemData: {fileID: 11400000, guid: b5c0d771ecd2ce944a05ce20711715a6, type: 2}
+    <Components>k__BackingField:
+    - rid: 3979956836658839621
   references:
     version: 2
     RefIds:
@@ -176,6 +181,20 @@ MonoBehaviour:
     - rid: 3979956832699154501
       type: {class: AimStepData, ns: Assets.Scripts.Combat, asm: Assembly-CSharp}
       data: 
+    - rid: 3979956836658839621
+      type: {class: Ammo, ns: Assets.Scripts.Items, asm: Assembly-CSharp}
+      data:
+        <AmmoDataSpecific>k__BackingField: {fileID: 0}
+        <CurrentAmmo>k__BackingField:
+          <CurrentValue>k__BackingField: 3
+          <MinValue>k__BackingField:
+            <BaseValue>k__BackingField: -99999
+            <PlusModifiers>k__BackingField: []
+            <MultiplyModifiers>k__BackingField: []
+          <MaxValue>k__BackingField:
+            <BaseValue>k__BackingField: 99999
+            <PlusModifiers>k__BackingField: []
+            <MultiplyModifiers>k__BackingField: []
 --- !u!1 &471690542
 GameObject:
   m_ObjectHideFlags: 0
