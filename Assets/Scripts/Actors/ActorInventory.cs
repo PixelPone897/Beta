@@ -7,13 +7,28 @@ using UnityEngine;
 
 namespace Assets.Scripts.Actors
 {
+    /// <summary>
+    /// Represents the inventory of an Actor.
+    /// </summary>
     [RequireComponent(typeof(ActorSpecialStats))]
     public class ActorInventory: MonoBehaviour
     {
+        /// <summary>
+        /// Reference to Actor's Special Stats.
+        /// </summary>
         private ActorSpecialStats specialStats;
 
         private float numberOfBottleCaps;
         private Stat carryWeight;
+        
+        /// <summary>
+        /// Inventory associated with an Actor.
+        /// </summary>
+        /// <remarks>
+        /// The total number of Inventory Slots can vary as it is dependent
+        /// on the maximum weight that an Actor can carry.
+        /// </remarks>
+        /// <seealso cref="InventorySlot"/>
         [field: SerializeField]
         private List<InventorySlot> inventorySlots;
 
@@ -43,6 +58,9 @@ namespace Assets.Scripts.Actors
 
         }
 
+        /// <summary>
+        /// Removes all Inventory Slots from Inventory
+        /// </summary>
         public void ClearInventory()
         {
             inventorySlots.Clear();
@@ -50,6 +68,13 @@ namespace Assets.Scripts.Actors
 
         // For non-stackable items, track using GUID. For stackable, use their name
 
+        /// <summary>
+        /// Adds item to inventory if possible.
+        /// </summary>
+        /// <remarks>Either an item gets added to an existing Inventory Slot if it is 
+        /// stackable and one associated with it already exists, or a new one is created
+        /// for it.</remarks>
+        /// <param name="itemToAdd">The item to be added to the inventory.</param>
         public void AddItem(ItemInstance itemToAdd)
         {
             float inventoryWeight = GetTotalWeight();
@@ -97,6 +122,10 @@ namespace Assets.Scripts.Actors
             }
         }
 
+        /// <summary>
+        /// Calculates and returns the total weight of all items in an Actor's inventory.
+        /// </summary>
+        /// <returns>The total weight of all items in an Actor's inventory.</returns>
         public float GetTotalWeight()
         {
             float totalWeight = 0;
@@ -110,11 +139,23 @@ namespace Assets.Scripts.Actors
         }
     }
 
+    /// <summary>
+    /// Represents a slot in an Actor's inventory.
+    /// </summary>
     [System.Serializable]
     public class InventorySlot
     {
+        /// <summary>
+        /// Item being stored at this slot.
+        /// </summary>
         [field: SerializeField]
         public ItemInstance Item { get; set; }
+
+        /// <summary>
+        /// Amount of this specific item stored at this slot.
+        /// </summary>
+        /// <remarks>For non-stackable Items, this value should be one.
+        /// For stackable Items, it can be a variable amount.</remarks>
         [field: SerializeField]
         public int Amount { get; set; }
 

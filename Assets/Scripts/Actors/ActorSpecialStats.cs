@@ -1,12 +1,17 @@
-using Scripts.Perks;
 using System.Collections.Generic;
 using UnityEngine;
 using static Scripts.Constants;
 
-// Will get refractored into multiple components as system expands
-// Values will also be moved to the BaseActorStats ScriptableObject in the future
 namespace Scripts.Actors
 {
+    /// <summary>
+    /// Represents the core stats of an Actor.
+    /// </summary>
+    /// <remarks>
+    /// This class will get refractored into multiple components as system expands.
+    /// Values might get moved to a "BaseActorStats" like class for prototype pattern
+    /// in the future as well.
+    /// </remarks>
     public class ActorSpecialStats : MonoBehaviour
     {
 
