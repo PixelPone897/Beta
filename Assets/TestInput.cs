@@ -34,7 +34,7 @@ using UnityEngine.InputSystem.Utilities;
 ///
 ///     void Awake()
 ///     {
-///         m_Actions = new MyActions_Actions();              // CreateStep asset object.
+///         m_Actions = new MyActions_Actions();              // Create asset object.
 ///         m_Player = m_Actions.Player;                      // Extract action map object.
 ///         m_Player.AddCallbacks(this);                      // Register callback interface IPlayerActions.
 ///     }
@@ -57,9 +57,9 @@ using UnityEngine.InputSystem.Utilities;
 ///     #region Interface implementation of MyActions.IPlayerActions
 ///
 ///     // Invoked when "Move" action is either started, performed or canceled.
-///     public void InputMove(InputAction.CallbackContext context)
+///     public void OnMove(InputAction.CallbackContext context)
 ///     {
-///         Debug.Log($"InputMove: {context.ReadValue&lt;Vector2&gt;()}");
+///         Debug.Log($"OnMove: {context.ReadValue&lt;Vector2&gt;()}");
 ///     }
 ///
 ///     // Invoked when "Attack" action is either started, performed or canceled.
@@ -96,6 +96,15 @@ public partial class @TestInput: IInputActionCollection2, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""679dcf95-095d-466d-b8ad-7d4602c6bcae"",
                     ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""c60ae876-81bf-4765-8b74-591c68817116"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -156,6 +165,17 @@ public partial class @TestInput: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""36a57b89-9272-4885-a99b-edbe9e0be757"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -165,6 +185,7 @@ public partial class @TestInput: IInputActionCollection2, IDisposable
         // Combat
         m_Combat = asset.FindActionMap("Combat", throwIfNotFound: true);
         m_Combat_Move = m_Combat.FindAction("Move", throwIfNotFound: true);
+        m_Combat_Select = m_Combat.FindAction("Select", throwIfNotFound: true);
     }
 
     ~@TestInput()
@@ -246,6 +267,7 @@ public partial class @TestInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Combat;
     private List<ICombatActions> m_CombatActionsCallbackInterfaces = new List<ICombatActions>();
     private readonly InputAction m_Combat_Move;
+    private readonly InputAction m_Combat_Select;
     /// <summary>
     /// Provides access to input actions defined in input action map "Combat".
     /// </summary>
@@ -261,6 +283,10 @@ public partial class @TestInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Combat/Move".
         /// </summary>
         public InputAction @Move => m_Wrapper.m_Combat_Move;
+        /// <summary>
+        /// Provides access to the underlying input action "Combat/Select".
+        /// </summary>
+        public InputAction @Select => m_Wrapper.m_Combat_Select;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -290,6 +316,9 @@ public partial class @TestInput: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @Select.started += instance.OnSelect;
+            @Select.performed += instance.OnSelect;
+            @Select.canceled += instance.OnSelect;
         }
 
         /// <summary>
@@ -304,6 +333,9 @@ public partial class @TestInput: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @Select.started -= instance.OnSelect;
+            @Select.performed -= instance.OnSelect;
+            @Select.canceled -= instance.OnSelect;
         }
 
         /// <summary>
@@ -351,5 +383,12 @@ public partial class @TestInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Select" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelect(InputAction.CallbackContext context);
     }
 }

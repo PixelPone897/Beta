@@ -10,6 +10,7 @@ namespace Assets.Scripts.Services
     public class PlayerCombatInputService : IInputService
     {
         public event EventHandler<Vector2> OnMoveInput;
+        public event EventHandler<bool> OnSelectInput;
 
         /// <summary>
         /// Input Actions used by Unity to handle player input events.
@@ -27,17 +28,24 @@ namespace Assets.Scripts.Services
         {
             inputActions = new TestInput();
             inputActions.Combat.Enable();
-            inputActions.Combat.Move.performed += OnMovePerformed;
+            inputActions.Combat.Move.performed += Move_performed;
+            inputActions.Combat.Select.performed += Select_performed;
         }
 
-        private void OnMovePerformed(CallbackContext inputContext)
+        private void Move_performed(CallbackContext inputContext)
         {
             OnMoveInput?.Invoke(this, inputContext.ReadValue<Vector2>());
         }
 
+        private void Select_performed(CallbackContext inputContext)
+        {
+            OnSelectInput?.Invoke(this, inputContext.ReadValueAsButton());
+        }
+
         public void DisableInput()
         {
-            inputActions.Combat.Move.performed -= OnMovePerformed;
+            inputActions.Combat.Move.performed -= Move_performed;
+            inputActions.Combat.Select.performed -= Select_performed;
             inputActions.Combat.Disable();
         }
     }

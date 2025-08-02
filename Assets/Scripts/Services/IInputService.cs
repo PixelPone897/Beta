@@ -18,6 +18,12 @@ namespace Assets.Scripts.Services
         public event EventHandler<Vector2> OnMoveInput;
 
         /// <summary>
+        /// Event triggered when "select" input is retrived (either through
+        /// direct player input, an AI method, etc).
+        /// </summary>
+        public event EventHandler<bool> OnSelectInput;
+
+        /// <summary>
         /// Enables input service.
         /// </summary>
         /// <remarks>Should be used for enabling and subscribing to EventHandlers.</remarks>
