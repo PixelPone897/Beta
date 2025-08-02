@@ -70,23 +70,17 @@ namespace Assets.Scripts.Combat.CombatActions
         public CombatAction(UnityServiceProvider serviceProvider)
         {
             ServiceProvider = serviceProvider;
+            Owner = ServiceProvider.GetContext<ActorSpecialStats>();
+            BattleManagerRef = ServiceProvider.GetContext<BattleManager>();
             currentCombatStep = null;
         }
-
-        // Might change this so that BattleManager and Actor is injected via contexts
-        // instead, so that CanBePerformed() can be run first before running Start.
-        // Similar to how CombatStep is currently handled.
 
         /// <summary>
         /// Runs when the CombatAction first starts (can be used to set up values if needed).
         /// </summary>
         /// <remarks>Think of this like Monobehavior's OnEnable() method.</remarks>
-        /// <param name="bm">The instance to BattleManager.</param>
-        /// <param name="owner">The Actor who owns this CombatAction.</param>
-        public virtual void StartAction(BattleManager bm, ActorSpecialStats owner)
+        public virtual void StartAction()
         {
-            BattleManagerRef = bm;
-            Owner = owner;
             startTime = Time.time;
         }
 
