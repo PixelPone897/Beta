@@ -1,5 +1,8 @@
 using Assets.Scripts.Combat.CombatActions;
+using Assets.Scripts.Combat.CombatStepDatas;
+using Assets.Scripts.Combat.CombatSteps;
 using Assets.Scripts.Services;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Combat.CombatActionDatas
@@ -13,7 +16,8 @@ namespace Assets.Scripts.Combat.CombatActionDatas
     /// can perform in battle- it consists of three parts: Design, Logic, and
     /// Context. Design refers to values that are set within the inspector.
     /// Alongside this, these are used for specifying the structure of the
-    /// CombatAction in question. Logic refers to injecting the proper
+    /// CombatAction in question (helped with its CombatStepData substeps). 
+    /// Logic refers to injecting the proper
     /// dependencies at runtime to define the behavior that uses this previously
     /// established data. This is done through the service provider. Context
     /// refers to providing any objects/actor specific objects needed for the
@@ -22,12 +26,43 @@ namespace Assets.Scripts.Combat.CombatActionDatas
     /// <para>
     /// Through using the CombatActionData as a base,
     /// the proper runtime instance of the CombatAction is created
-    /// through the factory pattern using the BuildAction() method.
+    /// through the builder pattern using the BuildAction() method.
+    /// </para>
+    /// <para>
+    /// When creating a CombatAction, first the CombatAction is created and injected,
+    /// and then any CombatSteps it contains will be constructed afterwards.
     /// </para>
     /// </remarks>
-    /// <seealso cref="CombatAction"/>
+    /// <seealso cref="CombatActionData"/>
     public abstract class CombatActionData
     {
+        [SerializeReference, SubclassSelector]
+        public List<CombatStepData> combatStepDatas;
+
+        /// <summary>
+        /// Creates all CombatSteps from the serialized CombatStepData list
+        /// </summary>
+        /// <param name="parent">Parent CombatAction that holds these CombatSteps.</param>
+        /// <returns>A sequence of CombatSteps.</returns>
+        protected Queue<CombatStep> CreateSteps(CombatAction parent)
+        {
+            Queue<CombatStep> steps = new Queue<CombatStep>();
+
+            if (combatStepDatas != null)
+            {
+                foreach (var stepData in combatStepDatas)
+                {
+                    // Create a step instance using the factory method on CombatStepData
+                    CombatStep step = stepData.BuildStep(parent);
+
+                    // Enqueue it for the CombatAction to consume
+                    steps.Enqueue(step);
+                }
+            }
+
+            return steps;
+        }
+
         /// <summary>
         /// Builds a CombatAction based on the data, services and contexts provided to it.
         /// </summary>

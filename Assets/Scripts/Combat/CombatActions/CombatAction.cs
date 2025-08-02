@@ -1,10 +1,7 @@
-﻿using Assets.Scripts.Services;
+﻿using Assets.Scripts.Combat.CombatSteps;
+using Assets.Scripts.Services;
 using Scripts.Actors;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Combat.CombatActions
@@ -18,6 +15,7 @@ namespace Assets.Scripts.Combat.CombatActions
     /// scafolding of a CombatAction, think of CombatAction as being constructed,
     /// runtime version of that.
     /// </remarks>
+    /// <seealso cref="CombatAction"/>
     public abstract class CombatAction
     {
         /// <summary>
@@ -66,7 +64,7 @@ namespace Assets.Scripts.Combat.CombatActions
         /// </summary>
         public ActorSpecialStats Owner { get; private set; }
 
-        protected Queue<CombatStep> combatSteps;
+        public Queue<CombatStep> CombatSteps { get; set; }
         protected CombatStep currentCombatStep;
 
         public CombatAction(UnityServiceProvider serviceProvider)
@@ -98,7 +96,26 @@ namespace Assets.Scripts.Combat.CombatActions
         /// <remarks>Think of this like Monobehavior's Update() method.</remarks>
         public virtual void UpdateAction()
         {
-            
+            while (CombatSteps.Count > 0)
+            {
+                if (currentCombatStep != null && !currentCombatStep.IsFinished())
+                {
+                    currentCombatStep.UpdateStep();
+                    return;
+                }
+
+                currentCombatStep?.EndStep();
+                currentCombatStep = CombatSteps.Dequeue();
+
+                if (currentCombatStep.CanBePerformed())
+                {
+                    currentCombatStep.StartStep();
+                }
+                else
+                {
+                    CombatSteps.Clear(); // Cancel remaining steps if one is invalid
+                }
+            }
         }
 
         /// <summary>
@@ -108,22 +125,22 @@ namespace Assets.Scripts.Combat.CombatActions
         public abstract void EndAction();
 
         /// <summary>
-        /// Indicates if the CombatState is finished.
+        /// Indicates if the CombatAction is finished.
         /// </summary>
         /// <returns>
-        /// True- if the CombatState is finished.
-        /// False- if the CombatState is not finished.
-        /// </returns>
-        public abstract bool CanBePerformed();
-
-        /// <summary>
-        /// Indicates if the CombatState can be performed.
-        /// </summary>
-        /// <returns>
-        /// True- if the CombatState can be performed.
-        /// False- if the CombatState can not be performed.
+        /// True- if the CombatAction is finished.
+        /// False- if the CombatAction is not finished.
         /// </returns>
         public abstract bool IsFinished();
+
+        /// <summary>
+        /// Indicates if the CombatAction can be performed at all.
+        /// </summary>
+        /// <returns>
+        /// True- if the CombatAction can be performed.
+        /// False- if the CombatAction can not be performed.
+        /// </returns>
+        public virtual bool CanBePerformed() => true;
 
         /// <summary>
         /// Automatically clears all registered context types from the service provider.
