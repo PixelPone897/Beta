@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Combat.CombatActionDatas;
 using Assets.Scripts.Combat.CombatActions;
 using Assets.Scripts.Services;
-using NUnit.Framework;
 using Scripts;
 using Scripts.Actors;
 using System.Collections.Generic;
@@ -17,21 +16,22 @@ namespace Assets.Scripts.Combat
 
         private void Awake()
         {
+            entityList ??= new List<ActorSpecialStats>();
             actionQueue = new List<CombatAction>();
             currentAction = null;
         }
 
         private void Start()
         {
-            GetInitiative();
             UnityServiceProvider unityServiceProvider = new();
             unityServiceProvider.RegisterContext(this);
             unityServiceProvider.RegisterContext(new object());
             unityServiceProvider.RegisterService<IInputService>(new PlayerCombatInputService());
-            CombatAction testAction = new TakeTurnActionData().BuildAction(unityServiceProvider);
-            testAction.StartAction();
+            AddCombatAction(new TakeTurnActionData(), 1, unityServiceProvider);
+            AddCombatAction(new TakeTurnActionData(), 99, unityServiceProvider);
+            AddCombatAction(new TakeTurnActionData(), 15, unityServiceProvider);
+            ToString();
         }
-
 
         /// <summary>
         /// Gets starting turn order
@@ -84,6 +84,37 @@ namespace Assets.Scripts.Combat
                     return 1;
                 }
             });
+        }
+
+        public void AddCombatAction(CombatActionData newActionData, int countDown,
+            UnityServiceProvider serviceProvider)
+        {
+            CombatAction combatAction = newActionData.BuildAction(serviceProvider);
+            combatAction.CountDown = countDown;
+
+            for(int i = 0; i < actionQueue.Count; i++)
+            {
+                if(countDown < actionQueue[i].CountDown)
+                {
+                    actionQueue.Insert(i, combatAction);
+                    return;
+                }
+            }
+
+            // If we made it to the end of the current CombatActionQueue, just add
+            // it add the end
+            actionQueue.Add(combatAction);
+        }
+
+        public override string ToString()
+        {
+            string baseString = "Combat Action order:\n";
+            foreach(CombatAction combatAction in actionQueue)
+            {
+                string actionString = combatAction.ToString();
+                baseString += actionString + "\n";
+            }
+            return baseString;
         }
     }
 }

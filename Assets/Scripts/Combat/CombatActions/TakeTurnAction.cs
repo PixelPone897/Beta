@@ -48,5 +48,10 @@ namespace Assets.Scripts.Combat.CombatActions
         {
             return isFinished;
         }
+
+        public override string ToString()
+        {
+            return "TakeTurnAction, CountDown: " + CountDown;
+        }
     }
 }
