@@ -39,6 +39,7 @@ namespace Assets.Scripts.Combat.CombatActions
         {
             Debug.Log("ACTION ENDED!");
             inputService.OnMoveInput -= InputService_OnMoveInput;
+            inputService.OnSelectInput -= InputService_OnSelectInput;
             inputService.DisableInput();
             ClearContext();
         }
