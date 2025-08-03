@@ -30,6 +30,7 @@ namespace Assets.Scripts.Combat.CombatStepDatas
     /// through the builder pattern using the BuildAction() method.
     /// </para>
     /// <seealso cref="CombatAction"/>
+    [Serializable]
     public abstract class CombatStepData
     {
         // Might have to update this to pass service provider instead?

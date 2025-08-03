@@ -9,7 +9,7 @@ namespace Assets.Scripts.Services
     /// <remarks>This is used to abstract "input" sources (direct player input vs
     /// AI methods for example) so that they can be handled in a similar
     /// manner.</remarks>
-    internal interface IInputService
+    public interface IInputService
     {
         /// <summary>
         /// Event triggered when "move" input is retrived (either through

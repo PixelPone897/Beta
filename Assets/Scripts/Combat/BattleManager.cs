@@ -10,7 +10,12 @@ namespace Assets.Scripts.Combat
 {
     public class BattleManager : MonoBehaviour
     {
+        private bool isBattleFinished;
+
+        [SerializeField]
+        public Grid CombatGrid {  get; set; }
         private CombatAction currentAction;
+        [SerializeField]
         private List<ActorSpecialStats> entityList;
         private List<CombatAction> actionQueue;
 
@@ -19,18 +24,44 @@ namespace Assets.Scripts.Combat
             entityList ??= new List<ActorSpecialStats>();
             actionQueue = new List<CombatAction>();
             currentAction = null;
+            isBattleFinished = false;
         }
 
         private void Start()
         {
             UnityServiceProvider unityServiceProvider = new();
             unityServiceProvider.RegisterContext(this);
-            unityServiceProvider.RegisterContext(new object());
-            unityServiceProvider.RegisterService<IInputService>(new PlayerCombatInputService());
-            AddCombatAction(new TakeTurnActionData(), 1, unityServiceProvider);
-            AddCombatAction(new TakeTurnActionData(), 99, unityServiceProvider);
-            AddCombatAction(new TakeTurnActionData(), 15, unityServiceProvider);
-            ToString();
+            unityServiceProvider.RegisterContext(entityList[0]);
+            unityServiceProvider.RegisterService(entityList[0].GetComponent<ActorBattle>().inputService);
+        }
+
+        private void Update()
+        {
+            if (currentAction != null && !currentAction.IsFinished())
+            {
+                currentAction.UpdateAction();
+            }
+            else
+            {
+                currentAction?.EndAction();
+
+                while (actionQueue.Count > 0)
+                {
+                    currentAction = actionQueue[0];
+                    actionQueue.RemoveAt(0);
+
+                    if (currentAction.CanBePerformed())
+                    {
+                        currentAction.StartAction();
+                        break;
+                    }
+                }
+
+                if (actionQueue.Count == 0)
+                {
+                    isBattleFinished = true;
+                }
+            }
         }
 
         /// <summary>

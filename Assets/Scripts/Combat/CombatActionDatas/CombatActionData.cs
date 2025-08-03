@@ -2,6 +2,7 @@ using Assets.Scripts.Combat.CombatActions;
 using Assets.Scripts.Combat.CombatStepDatas;
 using Assets.Scripts.Combat.CombatSteps;
 using Assets.Scripts.Services;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,6 +35,7 @@ namespace Assets.Scripts.Combat.CombatActionDatas
     /// </para>
     /// </remarks>
     /// <seealso cref="CombatActionData"/>
+    [Serializable]
     public abstract class CombatActionData
     {
         [SerializeReference, SubclassSelector]

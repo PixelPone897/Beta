@@ -1,4 +1,5 @@
-﻿using Scripts;
+﻿using Assets.Scripts.Combat.CombatActionDatas;
+using Scripts;
 using Scripts.Perks;
 using System;
 using System.Collections.Generic;
@@ -138,6 +139,26 @@ namespace Assets.Scripts.Items
     }
 
     [Serializable]
+    public class RangedWeapon : ItemInstanceComponent, IGetCombatActionDatas
+    {
+        [SerializeReference, SubclassSelector]
+        public List<CombatActionData> CombatActionDatas;
+
+        public RangedWeapon() { }
+
+        public override void Initialize(ItemInstance owner)
+        {
+            Owner = owner;
+            CombatActionDatas ??= new List<CombatActionData>();
+        }
+
+        public List<CombatActionData> GetCombatActionDatas()
+        {
+            return CombatActionDatas;
+        }
+    }
+
+    [Serializable]
     public class ItemInstance
     {
         [field: SerializeField]
@@ -152,6 +173,7 @@ namespace Assets.Scripts.Items
         {
             Components ??= new List<ItemInstanceComponent>();
             UniqueId = string.Empty;
+            Initialize();
         }
 
         public ItemInstance(ItemData itemData)

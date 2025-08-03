@@ -7,7 +7,8 @@ namespace Assets.Scripts.Services
     /// <summary>
     /// Service that handles input from the player.
     /// </summary>
-    public class PlayerCombatInputService : IInputService
+    [Serializable]
+    public class CombatPlayerInputService : IInputService
     {
         public event EventHandler<Vector2> OnMoveInput;
         public event EventHandler<bool> OnSelectInput;

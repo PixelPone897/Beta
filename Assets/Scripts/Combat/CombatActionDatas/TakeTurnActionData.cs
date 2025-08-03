@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Combat.CombatActionDatas
 {
+    [Serializable]
     public class TakeTurnActionData : CombatActionData
     {
         public override CombatAction BuildAction(UnityServiceProvider serviceProvider)

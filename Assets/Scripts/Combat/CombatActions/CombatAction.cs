@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Combat.CombatSteps;
+﻿using Assets.Scripts.Combat.CombatStepDatas;
+using Assets.Scripts.Combat.CombatSteps;
 using Assets.Scripts.Services;
 using Scripts.Actors;
 using System.Collections.Generic;
@@ -143,6 +144,12 @@ namespace Assets.Scripts.Combat.CombatActions
         public void ClearContext()
         {
             ServiceProvider.ClearContexts();
+        }
+
+        public void AddCombatStep(CombatStepData data)
+        {
+            CombatStep step = data.BuildStep(this);
+            CombatSteps.Enqueue(step);
         }
 
     }
