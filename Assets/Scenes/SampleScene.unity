@@ -119,6 +119,155 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &234758907
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 234758911}
+  - component: {fileID: 234758910}
+  - component: {fileID: 234758909}
+  - component: {fileID: 234758908}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &234758908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234758907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a34e8ca0105d9504b93e0ae9ae9d39a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputService:
+    rid: 1241690661998035013
+  references:
+    version: 2
+    RefIds:
+    - rid: 1241690661998035013
+      type: {class: CombatPlayerInputService, ns: Assets.Scripts.Services, asm: Assembly-CSharp}
+      data: 
+--- !u!114 &234758909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234758907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8940c7256cd6dd243bab4e4aaa92bea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventorySlots:
+  - <Item>k__BackingField:
+      <UniqueId>k__BackingField: 
+      itemData: {fileID: 11400000, guid: b5c0d771ecd2ce944a05ce20711715a6, type: 2}
+      <Components>k__BackingField:
+      - rid: 1241690661998035009
+      - rid: 1241690661998035010
+      - rid: 1241690661998035011
+    <Amount>k__BackingField: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 1241690661998035009
+      type: {class: RangedWeapon, ns: Assets.Scripts.Items, asm: Assembly-CSharp}
+      data:
+        CombatActionDatas:
+        - rid: 1241690661998035012
+    - rid: 1241690661998035010
+      type: {class: Condition, ns: Assets.Scripts.Items, asm: Assembly-CSharp}
+      data:
+        <CurrentCondition>k__BackingField:
+          <CurrentValue>k__BackingField: 0
+          <MinValue>k__BackingField:
+            <BaseValue>k__BackingField: -99999
+            <PlusModifiers>k__BackingField: []
+            <MultiplyModifiers>k__BackingField: []
+          <MaxValue>k__BackingField:
+            <BaseValue>k__BackingField: 99999
+            <PlusModifiers>k__BackingField: []
+            <MultiplyModifiers>k__BackingField: []
+    - rid: 1241690661998035011
+      type: {class: KeyItem, ns: Assets.Scripts.Items, asm: Assembly-CSharp}
+      data: 
+    - rid: 1241690661998035012
+      type: {class: TakeTurnActionData, ns: Assets.Scripts.Combat.CombatActionDatas, asm: Assembly-CSharp}
+      data:
+        combatStepDatas: []
+--- !u!114 &234758910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234758907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91cac8cb58c84fb47b4d99222d1bc0d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ActorName>k__BackingField: 
+  <Level>k__BackingField: 0
+  <Experience>k__BackingField: 0
+  <Race>k__BackingField: 0
+  <Age>k__BackingField: 0
+  <Gender>k__BackingField: 0
+  <Strength>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Perception>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Endurance>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Charisma>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Intelligence>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Agility>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+  <Luck>k__BackingField:
+    <BaseValue>k__BackingField: 0
+    <PlusModifiers>k__BackingField: []
+    <MultiplyModifiers>k__BackingField: []
+--- !u!4 &234758911
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234758907}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.63157, y: -3.25188, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,6 +518,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64ea0cd8725949c48b9719ed2539d59e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityList:
+  - {fileID: 234758910}
 --- !u!4 &815205024
 Transform:
   m_ObjectHideFlags: 0
@@ -391,3 +542,4 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 815205024}
+  - {fileID: 234758911}
