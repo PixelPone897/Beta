@@ -4,6 +4,7 @@ using Assets.Scripts.Services;
 using Scripts;
 using Scripts.Actors;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Assets.Scripts.Combat
@@ -11,9 +12,9 @@ namespace Assets.Scripts.Combat
     public class BattleManager : MonoBehaviour
     {
         private bool isBattleFinished;
-
         [SerializeField]
-        public Grid CombatGrid {  get; set; }
+        private TMP_Text testing;
+
         private CombatAction currentAction;
         [SerializeField]
         private List<ActorSpecialStats> entityList;
@@ -30,9 +31,16 @@ namespace Assets.Scripts.Combat
         private void Start()
         {
             UnityServiceProvider unityServiceProvider = new();
+            BattleLogger testLogger = new BattleLogger();
+            testLogger.loggingText = testing;
+
+            unityServiceProvider.RegisterService<ILoggerService>(testLogger);
+            unityServiceProvider.RegisterService(entityList[0].GetComponent<ActorBattle>().inputService);
+
             unityServiceProvider.RegisterContext(this);
             unityServiceProvider.RegisterContext(entityList[0]);
-            unityServiceProvider.RegisterService(entityList[0].GetComponent<ActorBattle>().inputService);
+
+            AddCombatAction(new TakeTurnActionData(), -1, unityServiceProvider);
         }
 
         private void Update()
