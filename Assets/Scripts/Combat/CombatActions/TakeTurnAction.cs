@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Services;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Combat.CombatActions
@@ -10,11 +11,19 @@ namespace Assets.Scripts.Combat.CombatActions
         private ILoggerService loggerService;
         private bool isFinished;
 
-        public TakeTurnAction(UnityServiceProvider serviceProvider) : base(serviceProvider)
+        private List<MenuOption> menuOptions;
+        private int currentMenuIndex;
+        private int previousMenuIndex;
+
+        public TakeTurnAction(UnityServiceProvider serviceProvider,
+            List<MenuOption> menuOptions) : base(serviceProvider)
         {
+            this.menuOptions = menuOptions;
+            currentMenuIndex = 0;
+            previousMenuIndex = -1;
+            isFinished = false;
             inputService = serviceProvider.GetService<IInputService>();
             loggerService = serviceProvider.GetService<ILoggerService>();
-            isFinished = false;
         }
 
         public override void StartAction()
@@ -25,18 +34,56 @@ namespace Assets.Scripts.Combat.CombatActions
             loggerService.EnableLogging();
             inputService.OnMoveInput += InputService_OnMoveInput;
             inputService.OnSelectInput += InputService_OnSelectInput;
+
             loggerService.Log("STARTED ACTION!");
         }
 
         private void InputService_OnSelectInput(object sender, bool e)
         {
             loggerService.Log("BUTTON PRESSED!");
-            isFinished = true;
         }
 
         private void InputService_OnMoveInput(object sender, Vector2 e)
         {
             loggerService.Log("CURRENT INPUT: "+e);
+            previousMenuIndex = currentMenuIndex;
+            if (e.Equals(Vector2Int.right))
+            {
+                if(currentMenuIndex == menuOptions.Count-1)
+                {
+                    currentMenuIndex = 0;
+                }
+                else
+                {
+                    currentMenuIndex++;
+                }
+            }
+            else if (e.Equals(Vector2Int.left))
+            {
+                if (currentMenuIndex == 0)
+                {
+                    currentMenuIndex = menuOptions.Count-1;
+                }
+                else
+                {
+                    currentMenuIndex--;
+                }
+            }
+        }
+
+        public override void UpdateAction()
+        {
+            if(previousMenuIndex != currentMenuIndex)
+            {
+                if (previousMenuIndex != -1)
+                {
+                    menuOptions[previousMenuIndex].SetSelected(false);
+                }
+                
+                menuOptions[currentMenuIndex].SetSelected(true);
+            }
+
+            base.UpdateAction();
         }
 
         public override void EndAction()

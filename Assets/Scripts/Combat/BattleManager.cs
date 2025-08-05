@@ -13,7 +13,10 @@ namespace Assets.Scripts.Combat
     {
         private bool isBattleFinished;
         [SerializeField]
-        private TMP_Text testing;
+        private TMP_Text testLogDisplay;
+
+        [SerializeReference, SubclassSelector]
+        private CombatActionData testActionData;
 
         private CombatAction currentAction;
         [SerializeField]
@@ -32,15 +35,15 @@ namespace Assets.Scripts.Combat
         {
             UnityServiceProvider unityServiceProvider = new();
             BattleLogger testLogger = new BattleLogger();
-            testLogger.loggingText = testing;
+            testLogger.loggingText = testLogDisplay;
 
             unityServiceProvider.RegisterService<ILoggerService>(testLogger);
-            unityServiceProvider.RegisterService(entityList[0].GetComponent<ActorBattle>().inputService);
+            unityServiceProvider.RegisterService<IInputService>(new CombatPlayerInputService());
 
             unityServiceProvider.RegisterContext(this);
-            unityServiceProvider.RegisterContext(entityList[0]);
+            unityServiceProvider.RegisterContext(new object());
 
-            AddCombatAction(new TakeTurnActionData(), -1, unityServiceProvider);
+            AddCombatAction(testActionData, -1, unityServiceProvider);
         }
 
         private void Update()
