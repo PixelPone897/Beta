@@ -418,6 +418,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1659502973}
     m_Modifications:
+    - target: {fileID: 1405268054986137433, guid: 115c4d686d924a34597a67f987a7269c, type: 3}
+      propertyPath: highlightedSprite
+      value: 
+      objectReference: {fileID: 8205325536435928046, guid: dfbf67697e6b5994792c96607476dca5, type: 3}
     - target: {fileID: 2889717489961128891, guid: 115c4d686d924a34597a67f987a7269c, type: 3}
       propertyPath: m_Name
       value: TestOption (1)
@@ -502,6 +506,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3301287609934573130, guid: 115c4d686d924a34597a67f987a7269c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1537007203, guid: dfbf67697e6b5994792c96607476dca5, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -741,7 +749,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 815205024}
-  - component: {fileID: 815205023}
+  - component: {fileID: 815205025}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -749,32 +757,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &815205023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815205022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64ea0cd8725949c48b9719ed2539d59e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  testLogDisplay: {fileID: 802068774}
-  testActionData:
-    rid: 1241690706085675073
-  entityList:
-  - {fileID: 0}
-  references:
-    version: 2
-    RefIds:
-    - rid: 1241690706085675073
-      type: {class: TakeTurnActionData, ns: Assets.Scripts.Combat.CombatActionDatas, asm: Assembly-CSharp}
-      data:
-        combatStepDatas: []
-        testing:
-        - {fileID: 1992584318}
 --- !u!4 &815205024
 Transform:
   m_ObjectHideFlags: 0
@@ -790,6 +772,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &815205025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815205022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64ea0cd8725949c48b9719ed2539d59e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testLogDisplay: {fileID: 0}
+  testActionData:
+    rid: -2
+  entityList: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &1659502969
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,17 +903,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2925155240688328305, guid: 115c4d686d924a34597a67f987a7269c, type: 3}
   m_PrefabInstance: {fileID: 2622436856020489654}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1992584318 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1405268054986137433, guid: 115c4d686d924a34597a67f987a7269c, type: 3}
-  m_PrefabInstance: {fileID: 2622436856020489654}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4564c2339bfdc53488f9fdfbd41b910d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2622436856020489654
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -919,6 +911,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1659502973}
     m_Modifications:
+    - target: {fileID: 1405268054986137433, guid: 115c4d686d924a34597a67f987a7269c, type: 3}
+      propertyPath: highlightedSprite
+      value: 
+      objectReference: {fileID: -270681942, guid: dfbf67697e6b5994792c96607476dca5, type: 3}
     - target: {fileID: 2889717489961128891, guid: 115c4d686d924a34597a67f987a7269c, type: 3}
       propertyPath: m_Name
       value: TestOption
