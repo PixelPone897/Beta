@@ -97,18 +97,24 @@ namespace Assets.Scripts.Combat.CombatActions
             }
             else
             {
-                currentCombatStep?.EndStep();
-                currentCombatStep = null;
-                if(CombatActionSteps.Count > 0)
+                if(currentCombatStep != null)
                 {
-                    if(CombatActionSteps.Peek().CanBePerformed())
+                    currentCombatStep?.EndStep();
+                    currentCombatStep = null;
+                }
+                else
+                {
+                    if (CombatActionSteps.Count > 0)
                     {
-                        currentCombatStep = CombatActionSteps.Dequeue();
-                        currentCombatStep.StartStep();
-                    }
-                    else
-                    {
-                        CombatActionSteps.Clear();
+                        if (CombatActionSteps.Peek().CanBePerformed())
+                        {
+                            currentCombatStep = CombatActionSteps.Dequeue();
+                            currentCombatStep.StartStep();
+                        }
+                        else
+                        {
+                            CombatActionSteps.Clear();
+                        }
                     }
                 }
             }
