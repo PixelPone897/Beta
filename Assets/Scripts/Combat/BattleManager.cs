@@ -67,11 +67,6 @@ namespace Assets.Scripts.Combat
                         break;
                     }
                 }
-
-                if (actionQueue.Count == 0)
-                {
-                    isBattleFinished = true;
-                }
             }
         }
 

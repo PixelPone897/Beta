@@ -65,7 +65,7 @@ namespace Assets.Scripts.Combat.CombatActions
         /// </summary>
         public ActorSpecialStats Owner { get; private set; }
 
-        public Queue<CombatStep> CombatSteps { get; set; }
+        public Queue<CombatStep> CombatActionSteps { get; set; }
         protected CombatStep currentCombatStep;
 
         public CombatAction(UnityServiceProvider serviceProvider)
@@ -91,26 +91,33 @@ namespace Assets.Scripts.Combat.CombatActions
         /// <remarks>Think of this like Monobehavior's Update() method.</remarks>
         public virtual void UpdateAction()
         {
-            while (CombatSteps.Count > 0)
+            if(currentCombatStep != null && !currentCombatStep.IsFinished())
             {
-                if (currentCombatStep != null && !currentCombatStep.IsFinished())
-                {
-                    currentCombatStep.UpdateStep();
-                    return;
-                }
-
+                currentCombatStep.UpdateStep();
+            }
+            else
+            {
                 currentCombatStep?.EndStep();
-                currentCombatStep = CombatSteps.Dequeue();
-
-                if (currentCombatStep.CanBePerformed())
+                currentCombatStep = null;
+                if(CombatActionSteps.Count > 0)
                 {
-                    currentCombatStep.StartStep();
-                }
-                else
-                {
-                    CombatSteps.Clear(); // Cancel remaining steps if one is invalid
+                    if(CombatActionSteps.Peek().CanBePerformed())
+                    {
+                        currentCombatStep = CombatActionSteps.Dequeue();
+                        currentCombatStep.StartStep();
+                    }
+                    else
+                    {
+                        CombatActionSteps.Clear();
+                    }
                 }
             }
+
+            if(CombatActionSteps.Count == 0 && (currentCombatStep == null || currentCombatStep.IsFinished()))
+            {
+                EndAction();
+            }
+
         }
 
         /// <summary>
@@ -149,7 +156,7 @@ namespace Assets.Scripts.Combat.CombatActions
         public void AddCombatStep(CombatStepData data)
         {
             CombatStep step = data.BuildStep(this);
-            CombatSteps.Enqueue(step);
+            CombatActionSteps.Enqueue(step);
         }
 
     }
