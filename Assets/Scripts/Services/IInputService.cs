@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using static UnityEngine.InputSystem.InputAction;
 
 namespace Assets.Scripts.Services
 {
@@ -11,17 +12,21 @@ namespace Assets.Scripts.Services
     /// manner.</remarks>
     public interface IInputService
     {
-        /// <summary>
-        /// Event triggered when "move" input is retrived (either through
-        /// direct player input, an AI method, etc).
-        /// </summary>
-        public event EventHandler<Vector2> OnMoveInput;
+        // Keep events stupid- don't pass entire Callback context
 
         /// <summary>
-        /// Event triggered when "select" input is retrived (either through
+        /// Event triggered when "move" input is performed (either through
         /// direct player input, an AI method, etc).
         /// </summary>
-        public event EventHandler<bool> OnSelectInput;
+        public event EventHandler<Vector2> OnMovePerformed;
+
+        /// <summary>
+        /// Event triggered when "select" input is performed (either through
+        /// direct player input, an AI method, etc).
+        /// </summary>
+        public event EventHandler<bool> OnSelectPerformed;
+
+        public event EventHandler<bool> OnSelectCanceled;
 
         /// <summary>
         /// Enables input service.

@@ -10,8 +10,9 @@ namespace Assets.Scripts.Services
     [Serializable]
     public class CombatPlayerInputService : IInputService
     {
-        public event EventHandler<Vector2> OnMoveInput;
-        public event EventHandler<bool> OnSelectInput;
+        public event EventHandler<Vector2> OnMovePerformed;
+        public event EventHandler<bool> OnSelectPerformed;
+        public event EventHandler<bool> OnSelectCanceled;
 
         /// <summary>
         /// Input Actions used by Unity to handle player input events.
@@ -31,22 +32,29 @@ namespace Assets.Scripts.Services
             inputActions.Combat.Enable();
             inputActions.Combat.Move.performed += Move_performed;
             inputActions.Combat.Select.performed += Select_performed;
+            inputActions.Combat.Select.canceled += Select_canceled;
         }
 
         private void Move_performed(CallbackContext inputContext)
         {
-            OnMoveInput?.Invoke(this, inputContext.ReadValue<Vector2>());
+            OnMovePerformed?.Invoke(this, inputContext.ReadValue<Vector2>());
         }
 
         private void Select_performed(CallbackContext inputContext)
         {
-            OnSelectInput?.Invoke(this, inputContext.ReadValueAsButton());
+            OnSelectPerformed?.Invoke(this, inputContext.ReadValueAsButton());
+        }
+
+        private void Select_canceled(CallbackContext inputContext)
+        {
+            OnSelectCanceled?.Invoke(this, inputContext.ReadValueAsButton());
         }
 
         public void DisableInput()
         {
             inputActions.Combat.Move.performed -= Move_performed;
             inputActions.Combat.Select.performed -= Select_performed;
+            inputActions.Combat.Select.canceled -= Select_canceled;
             inputActions.Combat.Disable();
         }
     }

@@ -165,5 +165,10 @@ namespace Assets.Scripts.Combat.CombatActions
             CombatActionSteps.Enqueue(step);
         }
 
+        public void AddCombatStep(CombatStep newStep)
+        {
+            CombatActionSteps.Enqueue(newStep);
+        }
+
     }
 }
