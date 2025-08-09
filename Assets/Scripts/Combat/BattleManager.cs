@@ -12,8 +12,6 @@ namespace Assets.Scripts.Combat
     public class BattleManager : MonoBehaviour
     {
         private bool isBattleFinished;
-        [SerializeField]
-        private TMP_Text testLogDisplay;
 
         [SerializeReference, SubclassSelector]
         private CombatActionData testActionData;
@@ -33,17 +31,7 @@ namespace Assets.Scripts.Combat
 
         private void Start()
         {
-            UnityServiceProvider unityServiceProvider = new();
-            BattleLogger testLogger = new BattleLogger();
-            testLogger.loggingText = testLogDisplay;
-
-            unityServiceProvider.RegisterService<ILoggerService>(testLogger);
-            unityServiceProvider.RegisterService<IInputService>(new CombatPlayerInputService());
-
-            unityServiceProvider.RegisterContext(this);
-            unityServiceProvider.RegisterContext(new object());
-
-            AddCombatAction(testActionData, -1, unityServiceProvider);
+            AddCombatAction(testActionData, -1, new UnityServiceProvider());
         }
 
         private void Update()

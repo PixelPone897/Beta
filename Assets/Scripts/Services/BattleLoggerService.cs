@@ -1,9 +1,11 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 
 namespace Assets.Scripts.Services
 {
-    public class BattleLogger : ILoggerService
+    [Serializable]
+    public class BattleLoggerService : ILoggerService
     {
         [SerializeField]
         public TMP_Text loggingText;
