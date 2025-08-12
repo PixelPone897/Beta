@@ -32,14 +32,17 @@ namespace Assets.Scripts.Combat.CombatSteps
             serviceLogger = logger;
             serviceInputService = input;
             menuParentObject = menuVisualObject;
-            menuVisual = menuParentObject.GetComponent<IMenuVisual>();
+            if(menuVisualObject != null )
+            {
+                menuVisual = menuParentObject.GetComponent<IMenuVisual>();
+            }
         }
 
         public override void StartStep()
         {
             serviceInputService.EnableInput();
-            serviceLogger.EnableLogging();
-            menuVisual.ShowMenu();
+            serviceLogger?.EnableLogging();
+            menuVisual?.ShowMenu();
             serviceInputService.OnSelectCanceled += ServiceInputService_OnSelectCanceled;
             serviceInputService.OnMovePerformed += ServiceInputService_OnMovePerformed;
         }
@@ -68,7 +71,7 @@ namespace Assets.Scripts.Combat.CombatSteps
                     currentMenuIndex = 0;
                 }
             }
-            menuVisual.UpdateMenu(currentMenuIndex);
+            menuVisual?.UpdateMenu(currentMenuIndex);
         }
 
         private void ServiceInputService_OnSelectCanceled(object sender, bool e)
