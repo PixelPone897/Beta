@@ -71,17 +71,18 @@ namespace Assets.Scripts.Combat.CombatSteps
                     currentMenuIndex = 0;
                 }
             }
+            serviceLogger.Log("Current Menu Index: " + currentMenuIndex);
             menuVisual?.UpdateMenu(currentMenuIndex);
         }
 
         private void ServiceInputService_OnSelectCanceled(object sender, bool e)
         {
-            
+            serviceLogger.Log("Button Pressed!");
         }
 
         public override void UpdateStep()
         {
-            serviceLogger.Log("Current Menu Index: "+currentMenuIndex);
+            
         }
 
         public override void EndStep()
