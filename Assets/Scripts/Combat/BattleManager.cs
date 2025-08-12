@@ -21,6 +21,10 @@ namespace Assets.Scripts.Combat
         private List<ActorSpecialStats> entityList;
         private List<CombatAction> actionQueue;
 
+        // Temporary for now- refractor later when needed
+        [field: SerializeField]
+        public Grid GridProperty { get; set; }
+
         private void Awake()
         {
             entityList ??= new List<ActorSpecialStats>();
@@ -31,7 +35,9 @@ namespace Assets.Scripts.Combat
 
         private void Start()
         {
-            AddCombatAction(testActionData, -1, new UnityServiceProvider());
+            UnityServiceProvider test = new UnityServiceProvider();
+            test.RegisterContext(this);
+            AddCombatAction(testActionData, -1, test);
         }
 
         private void Update()

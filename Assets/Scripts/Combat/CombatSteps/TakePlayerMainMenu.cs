@@ -1,11 +1,7 @@
 ﻿using Assets.Scripts.Combat.CombatActions;
 using Assets.Scripts.Menu;
 using Assets.Scripts.Services;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Combat.CombatSteps
@@ -20,8 +16,7 @@ namespace Assets.Scripts.Combat.CombatSteps
         private GameObject menuParentObject;
         private IMenuVisual menuVisual;
 
-        public TakePlayerMainMenu(CombatAction parent,
-            ILoggerService logger, IInputService input, GameObject menuVisualObject) : base(parent)
+        public TakePlayerMainMenu(CombatAction parent) : base(parent)
         {
             currentMenuIndex = 0;
             testMenu = new List<string>()
@@ -29,10 +24,10 @@ namespace Assets.Scripts.Combat.CombatSteps
                 "Attack", "Item"
             };
 
-            serviceLogger = logger;
-            serviceInputService = input;
-            menuParentObject = menuVisualObject;
-            if(menuVisualObject != null )
+            serviceLogger = parent.ServiceProvider.GetService<ILoggerService>();
+            serviceInputService = parent.ServiceProvider.GetService<IInputService>();
+            menuParentObject = parent.ServiceProvider.GetContext<GameObject>();
+            if(menuParentObject != null)
             {
                 menuVisual = menuParentObject.GetComponent<IMenuVisual>();
             }
