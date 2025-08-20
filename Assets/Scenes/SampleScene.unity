@@ -262,7 +262,6 @@ MonoBehaviour:
   m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
-  m_Version: 2
   m_TaaSettings:
     m_Quality: 3
     m_FrameInfluence: 0.1
@@ -270,6 +269,7 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -487,33 +487,29 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64ea0cd8725949c48b9719ed2539d59e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Combat.BattleManager
   testActionData:
-    rid: 1241690779944747073
+    rid: 1241691030295674945
   entityList: []
+  loggerVisual: {fileID: 1130706453}
+  <GridProperty>k__BackingField: {fileID: 0}
   references:
     version: 2
     RefIds:
-    - rid: 1241690779944747073
+    - rid: 1241691030295674945
       type: {class: TakePlayerTurnData, ns: Assets.Scripts.Combat.CombatActionDatas, asm: Assembly-CSharp}
       data:
         combatStepDatas:
-        - rid: 1241690779944747074
-    - rid: 1241690779944747074
-      type: {class: TakePlayerMainMenuData, ns: Assets.Scripts.Combat.CombatStepDatas, asm: Assembly-CSharp}
-      data:
+        - rid: 1241691030295674951
         inputService:
-          rid: 1241690779944747075
-        loggerService:
-          rid: 1241690779944747076
+          rid: 1241691030295674947
         menuVisual: {fileID: 0}
-    - rid: 1241690779944747075
+    - rid: 1241691030295674947
       type: {class: CombatPlayerInputService, ns: Assets.Scripts.Services, asm: Assembly-CSharp}
       data: 
-    - rid: 1241690779944747076
-      type: {class: BattleLoggerService, ns: Assets.Scripts.Services, asm: Assembly-CSharp}
-      data:
-        loggingText: {fileID: 1130706455}
+    - rid: 1241691030295674951
+      type: {class: TakePlayerMainMenuData, ns: Assets.Scripts.Combat.CombatStepDatas, asm: Assembly-CSharp}
+      data: 
 --- !u!1 &966556980
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,8 +647,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -127.012245, y: -3.3031}
-  m_SizeDelta: {x: 105.1659, y: 34.4535}
+  m_AnchoredPosition: {x: -127.012245, y: -3.02}
+  m_SizeDelta: {x: 105.17, y: 33.88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1130706455
 MonoBehaviour:
@@ -719,7 +715,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 3
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
@@ -739,7 +735,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 1.4691467, y: 0, z: 1.3526459, w: 2.8655548}
+  m_margin: {x: 0.57147217, y: 0, z: 1.3526459, w: 0.3520813}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -762,10 +758,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1130706453}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c34fdbc9a459b4ca9a602d295d705f, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d72caeaf8c042d43b89b1aab869defc, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  autoScroll: 0
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Services.TestLoggerService
+  charDelay: 0.01
+  linePause: 0.25
 --- !u!1 &1242637874
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,6 +816,8 @@ TilemapRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -840,6 +839,7 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -2646,6 +2646,8 @@ TilemapRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2667,6 +2669,7 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
@@ -4433,6 +4436,8 @@ TilemapRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4454,6 +4459,7 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
@@ -4663,6 +4669,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4684,6 +4692,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4

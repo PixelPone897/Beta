@@ -21,6 +21,9 @@ namespace Assets.Scripts.Combat
         private List<ActorSpecialStats> entityList;
         private List<CombatAction> actionQueue;
 
+        [SerializeField]
+        private GameObject loggerVisual;
+
         // Temporary for now- refractor later when needed
         [field: SerializeField]
         public Grid GridProperty { get; set; }
@@ -36,6 +39,9 @@ namespace Assets.Scripts.Combat
         private void Start()
         {
             UnityServiceProvider test = new UnityServiceProvider();
+            ILoggerService logger = loggerVisual.GetComponent<ILoggerService>();
+
+            test.RegisterService(logger);
             test.RegisterContext(this);
             AddCombatAction(testActionData, -1, test);
         }

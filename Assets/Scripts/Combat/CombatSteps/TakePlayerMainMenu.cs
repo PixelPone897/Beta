@@ -9,6 +9,7 @@ namespace Assets.Scripts.Combat.CombatSteps
     public class TakePlayerMainMenu : CombatStep
     {
         private int currentMenuIndex;
+        private bool isFinished;
         private List<string> testMenu;
 
         private ILoggerService serviceLogger;
@@ -19,6 +20,7 @@ namespace Assets.Scripts.Combat.CombatSteps
         public TakePlayerMainMenu(CombatAction parent) : base(parent)
         {
             currentMenuIndex = 0;
+            isFinished = false;
             testMenu = new List<string>()
             {
                 "Attack", "Item"
@@ -37,6 +39,8 @@ namespace Assets.Scripts.Combat.CombatSteps
         {
             serviceInputService.EnableInput();
             serviceLogger?.EnableLogging();
+            serviceLogger?.Log("Started Take Player Main Menu!");
+
             menuVisual?.ShowMenu();
             serviceInputService.OnSelectCanceled += ServiceInputService_OnSelectCanceled;
             serviceInputService.OnMovePerformed += ServiceInputService_OnMovePerformed;
@@ -73,6 +77,7 @@ namespace Assets.Scripts.Combat.CombatSteps
         private void ServiceInputService_OnSelectCanceled(object sender, bool e)
         {
             serviceLogger.Log("Button Pressed!");
+            isFinished = true;
         }
 
         public override void UpdateStep()
@@ -82,16 +87,19 @@ namespace Assets.Scripts.Combat.CombatSteps
 
         public override void EndStep()
         {
+            serviceLogger?.Log("Ended Take Player Main Menu!");
+            serviceLogger?.DisableLogging();
+
             serviceInputService.DisableInput();
-            serviceLogger.DisableLogging();
-            menuVisual.HideMenu();
+
+            menuVisual?.HideMenu();
             serviceInputService.OnMovePerformed -= ServiceInputService_OnMovePerformed;
             serviceInputService.OnSelectCanceled -= ServiceInputService_OnSelectCanceled;
         }
 
         public override bool IsFinished()
         {
-            return false;
+            return isFinished;
         }
     }
 }
