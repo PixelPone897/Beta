@@ -7,28 +7,98 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using static SelectionAreaRenderer;
 
 namespace Assets.Scripts.Combat.CombatSteps
 {
     public class TakeAim : CombatStep
     {
-        private SelectionAreaBase shape;
-        private BattleManager battleManager;
+        private int costOfCurrentPath;
+        private int costOfMovement;
+
+        private Vector3Int startOfCurrentPath;
+        // This is temporary
+        private Vector3Int centerPosition;
+        private Vector3Int hoverPosition;
+
         private IInputService inputService;
         private ILoggerService loggerService;
+        
+        private BattleManager battleManager;
+        private GameObject selectionPrefab;
+        private GameObject hoverHandPrefab;
+        private GameObject selectionInstance;
+        private GameObject hoverInstance;
 
-        public TakeAim(CombatAction parent, SelectionAreaBase shape) : base(parent)
+        private SelectionAreaRenderer areaRenderer;
+        private SelectionAreaBase selectionBounds;
+
+        public TakeAim(CombatAction parent,
+            SelectionAreaBase selectionBounds,
+            GameObject selectionPrefab,
+            GameObject hoverHandPrefab) : base(parent)
         {
-            this.shape = shape;
+            startOfCurrentPath = Vector3Int.zero;
+            centerPosition = startOfCurrentPath;
+            hoverPosition = startOfCurrentPath;
+            this.selectionBounds = selectionBounds;
+
             battleManager = parent.ServiceProvider.GetContext<BattleManager>();
             inputService = parent.ServiceProvider.GetService<IInputService>();
             loggerService = parent.ServiceProvider.GetService<ILoggerService>();
+            this.selectionPrefab = selectionPrefab;
+            this.hoverHandPrefab = hoverHandPrefab;
         }
 
         public override void StartStep()
         {
             loggerService?.EnableLogging();
             loggerService?.Log("Enabled Take Aim Step!");
+            inputService.EnableInput();
+            inputService.OnMovePerformed += InputService_OnMovePerformed;
+
+            selectionInstance = UnityEngine.Object.Instantiate(selectionPrefab);
+            selectionInstance.transform.SetParent(battleManager.GridProperty.transform);
+            areaRenderer = selectionInstance.GetComponent<SelectionAreaRenderer>();
+
+            hoverInstance = UnityEngine.Object.Instantiate(hoverHandPrefab);
+            hoverInstance.transform.SetParent(selectionInstance.transform);
+
+            selectionBounds.UpdateSelectionArea(centerPosition);
+            areaRenderer.Render(selectionBounds.selectionAreaList);
+           
+        }
+
+        private void InputService_OnMovePerformed(object sender, Vector2 input)
+        {
+            if (input == Vector2Int.left || input == Vector2Int.right
+                || input == Vector2Int.up || input == Vector2Int.down)
+            {
+                Vector3 convertedInput = new Vector3(input.x, input.y);
+
+                Vector3Int potentialNewPosition = hoverPosition + Vector3Int.RoundToInt(convertedInput);
+
+                //Debug.Log($"{this.Owner.name} Input: {playerInput}");
+                //Debug.Log($"{this.Owner.name} Input: {Vector2Int.RoundToInt(playerInput)}");
+                //Debug.Log($"Potential New Hover Position: {potentialNewPosition}");
+
+                //Is potential position both within bounds and within the grid?
+                //(Could possibly refractor this into a separate independent Helper function)
+
+                if (battleManager.MainGridMap.HasTile(potentialNewPosition)
+                    && selectionBounds.ContainsPosition(potentialNewPosition))
+                {
+                    hoverPosition = potentialNewPosition;
+                }
+
+                loggerService.Log($"Updated Hover Position: {hoverPosition}");
+                areaRenderer.Render(selectionBounds.selectionAreaList);
+                Vector3 test = areaRenderer.GetCellCenterWorldPosition(hoverPosition);
+
+                test = new Vector3(test.x, test.y + 0.10f);
+                hoverInstance.transform.position = test;
+            }
         }
 
         public override bool IsFinished()

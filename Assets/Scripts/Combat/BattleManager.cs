@@ -6,6 +6,7 @@ using Scripts.Actors;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace Assets.Scripts.Combat
 {
@@ -28,6 +29,10 @@ namespace Assets.Scripts.Combat
         [field: SerializeField]
         public Grid GridProperty { get; set; }
 
+        public Tilemap MainGridMap { get; set; }
+
+        [SerializeField]
+
         private void Awake()
         {
             entityList ??= new List<ActorSpecialStats>();
@@ -40,9 +45,22 @@ namespace Assets.Scripts.Combat
         {
             UnityServiceProvider test = new UnityServiceProvider();
             ILoggerService logger = loggerVisual.GetComponent<ILoggerService>();
+            MainGridMap = GridProperty.transform.Find("GridLines").GetComponent<Tilemap>();
+
+            BoundsInt bounds = MainGridMap.cellBounds;
+
+            // Iterate through each position
+            foreach (Vector3Int pos in bounds.allPositionsWithin)
+            {
+                if (MainGridMap.HasTile(pos)) // only print filled cells
+                {
+                    Debug.Log($"Tile at index: {pos}");
+                }
+            }
 
             test.RegisterService(logger);
             test.RegisterContext(this);
+
             AddCombatAction(testActionData, -1, test);
         }
 
@@ -121,6 +139,46 @@ namespace Assets.Scripts.Combat
                     return 1;
                 }
             });
+        }
+
+        /// <summary>
+        /// Checks if an Actor has at least one CombatAction associated with it currently in the CombatActionQueue.
+        /// </summary>
+        /// <remarks>
+        /// Note!- That while CombatActions will get disconnected from
+        /// </remarks>
+        /// <param name="actor">The Actor that is being looked for.</param>
+        /// <returns>
+        /// True- if at least one CombatAction is found in the current CombatActionQueue.
+        /// False- if no CombatActions are found in the current CombatActionQueue.
+        /// </returns>
+        public bool DoesActorHaveCombatAction(ActorSpecialStats actor)
+        {
+
+            foreach (CombatAction queueEvent in actionQueue)
+            {
+                if (queueEvent.Owner == actor)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Removes all CombatStates associated with an Actor in the CombatActionQueue.
+        /// </summary>
+        /// <param name="actor">The Actor whose events are getting removed.</param>
+        public void RemoveEventsOwnedBy(ActorSpecialStats actor)
+        {
+
+            for (int i = 0; i < actionQueue.Count; i++)
+            {
+                if (actionQueue[i].Owner == actor)
+                {
+                    actionQueue.RemoveAt(i);
+                }
+            }
         }
 
         public void AddCombatAction(CombatActionData newActionData, int countDown,

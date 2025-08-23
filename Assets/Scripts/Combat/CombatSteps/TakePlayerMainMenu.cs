@@ -17,7 +17,7 @@ namespace Assets.Scripts.Combat.CombatSteps
         private GameObject menuParentObject;
         private IMenuVisual menuVisual;
 
-        public TakePlayerMainMenu(CombatAction parent) : base(parent)
+        public TakePlayerMainMenu(CombatAction parent, GameObject menuVisualObject) : base(parent)
         {
             currentMenuIndex = 0;
             isFinished = false;
@@ -28,7 +28,7 @@ namespace Assets.Scripts.Combat.CombatSteps
 
             serviceLogger = parent.ServiceProvider.GetService<ILoggerService>();
             serviceInputService = parent.ServiceProvider.GetService<IInputService>();
-            menuParentObject = parent.ServiceProvider.GetContext<GameObject>();
+            menuParentObject = menuVisualObject;
             if(menuParentObject != null)
             {
                 menuVisual = menuParentObject.GetComponent<IMenuVisual>();

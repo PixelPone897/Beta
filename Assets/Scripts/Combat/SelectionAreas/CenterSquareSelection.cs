@@ -14,12 +14,12 @@ namespace Scripts.CombatStates.SelectionAreas
 
         public CenterSquareSelection() { }
 
-        public override void UpdateSelectionArea(Vector2Int newOriginPoint)
+        public override void UpdateSelectionArea(Vector3Int newOriginPoint)
         {
             OriginPoint = newOriginPoint;
             ResetValues();
 
-            Vector2Int leftCorner = new Vector2Int(newOriginPoint.x - halfWidth, newOriginPoint.y - halfWidth);
+            Vector3Int leftCorner = new Vector3Int(newOriginPoint.x - halfWidth, newOriginPoint.y - halfWidth);
 
             int width = (halfWidth * 2) + 1;
 
@@ -27,7 +27,7 @@ namespace Scripts.CombatStates.SelectionAreas
             {
                 for (int j = 0; j < width; j++)
                 {
-                    selectionArea.Add(new Vector2Int(leftCorner.x + i, leftCorner.y + j));
+                    selectionArea.Add(new Vector3Int(leftCorner.x + i, leftCorner.y + j));
                 }
             }
 

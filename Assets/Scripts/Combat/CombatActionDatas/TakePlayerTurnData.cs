@@ -15,13 +15,9 @@ namespace Assets.Scripts.Combat.CombatActionDatas
         [SerializeReference, SubclassSelector]
         private IInputService inputService;
 
-        [SerializeField]
-        private GameObject menuVisual;
-
         public override CombatAction BuildAction(UnityServiceProvider serviceProvider)
         {
             serviceProvider.RegisterService(inputService);
-            serviceProvider.RegisterContext(menuVisual);
             var temp = new TakePlayerTurnAction(serviceProvider);
             temp.CombatActionSteps = CreateSteps(temp);
             return temp;

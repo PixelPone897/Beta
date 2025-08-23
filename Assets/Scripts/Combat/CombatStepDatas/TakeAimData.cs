@@ -17,9 +17,15 @@ namespace Assets.Scripts.Combat.CombatStepDatas
         [SerializeReference, SubclassSelector]
         private SelectionAreaBase selectionArea;
 
+        [SerializeField]
+        private GameObject selectionPrefab;
+
+        [SerializeField]
+        private GameObject handHoverPrefab;
+
         public override CombatStep BuildStep(CombatAction combatAction)
         {
-            return new TakeAim(combatAction, selectionArea);
+            return new TakeAim(combatAction, selectionArea, selectionPrefab, handHoverPrefab);
         }
     }
 }

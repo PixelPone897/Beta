@@ -10,23 +10,23 @@ namespace Assets.Scripts.Combat.SelectionAreas
     [Serializable]
     public abstract class SelectionAreaBase
     {
-        protected Vector2Int OriginPoint { get; set; }
-        protected HashSet<Vector2Int> selectionArea;
-        protected List<Vector2Int> selectionAreaList;
+        protected Vector3Int OriginPoint { get; set; }
+        protected HashSet<Vector3Int> selectionArea;
+        public List<Vector3Int> selectionAreaList;
 
         public SelectionAreaBase()
         {
-            OriginPoint = Vector2Int.zero;
-            selectionArea = new HashSet<Vector2Int>();
-            selectionAreaList = new List<Vector2Int>();
+            OriginPoint = Vector3Int.zero;
+            selectionArea = new HashSet<Vector3Int>();
+            selectionAreaList = new List<Vector3Int>();
         }
 
-        public bool ContainsPosition(Vector2Int position)
+        public bool ContainsPosition(Vector3Int position)
         {
             return selectionArea.Contains(position);
         }
 
-        public abstract void UpdateSelectionArea(Vector2Int newOriginPoint);
+        public abstract void UpdateSelectionArea(Vector3Int newOriginPoint);
         public abstract void ResetValues();
     }
 }
