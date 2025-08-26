@@ -701,7 +701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Services.TestLoggerService
   charDelay: 0.01
-  linePause: 0.15
+  linePause: 0.01
 --- !u!1 &1242637874
 GameObject:
   m_ObjectHideFlags: 0
