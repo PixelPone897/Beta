@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &6297478 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6584655217179366697, guid: e2ae9e56a9f597346b0ce62b77c37388, type: 3}
+  m_PrefabInstance: {fileID: 7838844220457987296}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &82288245
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,7 +701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Services.TestLoggerService
   charDelay: 0.01
-  linePause: 0.25
+  linePause: 0.15
 --- !u!1 &1242637874
 GameObject:
   m_ObjectHideFlags: 0
@@ -2538,7 +2543,7 @@ GameObject:
   - component: {fileID: 1295911193}
   - component: {fileID: 1295911195}
   - component: {fileID: 1295911194}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GridLines
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4597,12 +4602,69 @@ MonoBehaviour:
         selectionArea:
           rid: 1241691071076892741
         selectionPrefab: {fileID: 8522919134570143895, guid: 68b97c6f6a7211f4a995cbf052b27ed8, type: 3}
-        handHoverPrefab: {fileID: 682400801768725106, guid: e76160cbaae2ed74cbc6a1c42e608170, type: 3}
+        handHoverPrefab: {fileID: 6297478}
     - rid: 1241691071076892741
       type: {class: CenterSquareSelection, ns: Scripts.CombatStates.SelectionAreas, asm: Assembly-CSharp}
       data:
         selectionAreaList: []
         halfWidth: 1
+--- !u!1001 &7838844220457987296
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5895470912291287033, guid: e2ae9e56a9f597346b0ce62b77c37388, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 5895470912291287033, guid: e2ae9e56a9f597346b0ce62b77c37388, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 5895470912291287033, guid: e2ae9e56a9f597346b0ce62b77c37388, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5895470912291287033, guid: e2ae9e56a9f597346b0ce62b77c37388, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5895470912291287033, guid: e2ae9e56a9f597346b0ce62b77c37388, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5895470912291287033, guid: e2ae9e56a9f597346b0ce62b77c37388, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5895470912291287033, guid: e2ae9e56a9f597346b0ce62b77c37388, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5895470912291287033, guid: e2ae9e56a9f597346b0ce62b77c37388, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5895470912291287033, guid: e2ae9e56a9f597346b0ce62b77c37388, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5895470912291287033, guid: e2ae9e56a9f597346b0ce62b77c37388, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584655217179366697, guid: e2ae9e56a9f597346b0ce62b77c37388, type: 3}
+      propertyPath: m_Name
+      value: HoverHandPosition
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e2ae9e56a9f597346b0ce62b77c37388, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -4614,3 +4676,4 @@ SceneRoots:
   - {fileID: 966556984}
   - {fileID: 82288248}
   - {fileID: 1427470949}
+  - {fileID: 7838844220457987296}

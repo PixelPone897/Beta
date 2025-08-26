@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8130573021302260485}
   - component: {fileID: 1860878680417652542}
   m_Layer: 0
-  m_Name: Hover
+  m_Name: RedSelection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -14,10 +14,6 @@ namespace Assets.Scripts.Combat.CombatSteps
 {
     public class TakeAim : CombatStep
     {
-        private int costOfCurrentPath;
-        private int costOfMovement;
-
-        private Vector3Int startOfCurrentPath;
         // This is temporary
         private Vector3Int centerPosition;
         private Vector3Int hoverPosition;
@@ -39,9 +35,6 @@ namespace Assets.Scripts.Combat.CombatSteps
             GameObject selectionPrefab,
             GameObject hoverHandPrefab) : base(parent)
         {
-            startOfCurrentPath = Vector3Int.zero;
-            centerPosition = startOfCurrentPath;
-            hoverPosition = startOfCurrentPath;
             this.selectionBounds = selectionBounds;
 
             battleManager = parent.ServiceProvider.GetContext<BattleManager>();
@@ -67,7 +60,7 @@ namespace Assets.Scripts.Combat.CombatSteps
 
             selectionBounds.UpdateSelectionArea(centerPosition);
             areaRenderer.Render(selectionBounds.selectionAreaList);
-           
+            SetHoverHandPosition();
         }
 
         private void InputService_OnMovePerformed(object sender, Vector2 input)
@@ -79,13 +72,6 @@ namespace Assets.Scripts.Combat.CombatSteps
 
                 Vector3Int potentialNewPosition = hoverPosition + Vector3Int.RoundToInt(convertedInput);
 
-                //Debug.Log($"{this.Owner.name} Input: {playerInput}");
-                //Debug.Log($"{this.Owner.name} Input: {Vector2Int.RoundToInt(playerInput)}");
-                //Debug.Log($"Potential New Hover Position: {potentialNewPosition}");
-
-                //Is potential position both within bounds and within the grid?
-                //(Could possibly refractor this into a separate independent Helper function)
-
                 if (battleManager.MainGridMap.HasTile(potentialNewPosition)
                     && selectionBounds.ContainsPosition(potentialNewPosition))
                 {
@@ -94,11 +80,16 @@ namespace Assets.Scripts.Combat.CombatSteps
 
                 loggerService.Log($"Updated Hover Position: {hoverPosition}");
                 areaRenderer.Render(selectionBounds.selectionAreaList);
-                Vector3 test = areaRenderer.GetCellCenterWorldPosition(hoverPosition);
-
-                test = new Vector3(test.x, test.y + 0.10f);
-                hoverInstance.transform.position = test;
+                SetHoverHandPosition();
             }
+        }
+
+        public void SetHoverHandPosition()
+        {
+            Vector3 position = areaRenderer.GetCellCenterWorldPosition(hoverPosition);
+
+            position = new Vector3(position.x, position.y + 0.25f);
+            hoverInstance.transform.position = position;
         }
 
         public override bool IsFinished()
